@@ -146,7 +146,7 @@ export default function Hero() {
             Explore Project <ArrowRight size={18} />
           </a>
           <a
-            href="https://github.com/akhiljithvg/dr-street"
+            href="https://github.com/akhiljithvg/Dr.Street"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary"

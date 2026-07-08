@@ -15,11 +15,11 @@ export default function Logo({ scale = 1 }) {
         <circle cx="50" cy="50" r="40" stroke="#1A1A1A" strokeWidth="12" />
         
         {/* Neon green accents on the ring (top left and top right arcs) */}
-        <path d="M 12 38 A 40 40 0 0 1 20 20" stroke="#39FF14" strokeWidth="12" strokeLinecap="butt" fill="none" />
-        <path d="M 88 38 A 40 40 0 0 0 80 20" stroke="#39FF14" strokeWidth="12" strokeLinecap="butt" fill="none" />
+        <path d="M 12 38 A 40 40 0 0 1 20 20" stroke="#008000" strokeWidth="12" strokeLinecap="butt" fill="none" />
+        <path d="M 88 38 A 40 40 0 0 0 80 20" stroke="#008000" strokeWidth="12" strokeLinecap="butt" fill="none" />
 
         {/* Center circle */}
-        <circle cx="50" cy="50" r="12" fill="#1A1A1A" stroke="#39FF14" strokeWidth="2" />
+        <circle cx="50" cy="50" r="12" fill="#1A1A1A" stroke="#008000" strokeWidth="2" />
 
         {/* Left spoke */}
         <path d="M 15 55 Q 35 55 38 50" stroke="#1A1A1A" strokeWidth="10" strokeLinecap="round" fill="none" />
@@ -48,7 +48,7 @@ export default function Logo({ scale = 1 }) {
           fontFamily: "'Inter', sans-serif",
           fontSize: `${0.7 * scale}rem`,
           fontWeight: 600,
-          color: '#39FF14',
+          color: '#008000',
           letterSpacing: '0.25em',
           textTransform: 'uppercase',
           marginTop: `${2 * scale}px`,

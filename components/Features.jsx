@@ -94,7 +94,7 @@ export default function Features() {
   return (
     <section id="features" style={{ background: '#090909' }}>
       <div className="section-header">
-        <span className="section-label">// Capabilities</span>
+        {/* <span className="section-label">// Capabilities</span> */}
         <h2 className="section-title">
           Engineered <span>Features</span>
         </h2>

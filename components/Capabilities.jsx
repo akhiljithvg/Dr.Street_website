@@ -39,7 +39,7 @@ export default function Capabilities() {
   return (
     <section id="capabilities" ref={sectionRef} style={{ background: '#090909' }}>
       <div className="section-header">
-        <span className="section-label">// Performance</span>
+        {/* <span className="section-label">// Performance</span> */}
         <h2 className="section-title">
           Robot <span>Capabilities</span>
         </h2>

@@ -39,7 +39,7 @@ export default function Architecture() {
   return (
     <section id="architecture" style={{ background: '#050505' }}>
       <div className="section-header">
-        <span className="section-label">// System Design</span>
+        {/* <span className="section-label">// System Design</span> */}
         <h2 className="section-title">
           System <span>Architecture</span>
         </h2>

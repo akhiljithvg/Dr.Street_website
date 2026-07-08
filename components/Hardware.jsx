@@ -73,7 +73,7 @@ export default function Hardware() {
   return (
     <section id="hardware" style={{ background: '#090909' }}>
       <div className="section-header">
-        <span className="section-label">// Components</span>
+        {/* <span className="section-label">// Components</span> */}
         <h2 className="section-title">
           Hardware <span>Platform</span>
         </h2>

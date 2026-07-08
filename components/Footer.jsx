@@ -17,7 +17,7 @@ export default function Footer() {
         Intelligent Autonomous Robotics Platform. Built for the future.
       </p>
       <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-        <a href="https://github.com/akhiljithvg/dr-street" target="_blank" rel="noreferrer" style={{
+        <a href="https://github.com/akhiljithvg/Dr.Street" target="_blank" rel="noreferrer" style={{
           color: 'var(--text-primary)', textDecoration: 'none', transition: 'color 0.3s'
         }} onMouseEnter={(e) => e.target.style.color = 'var(--accent-neon)'} onMouseLeave={(e) => e.target.style.color = 'var(--text-primary)'}>
           GitHub Repository

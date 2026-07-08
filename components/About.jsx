@@ -72,7 +72,7 @@ export default function About() {
   return (
     <section id="about" style={{ background: '#050505', position: 'relative' }}>
       <div className="section-header">
-        <span className="section-label">// About the Project</span>
+        {/* <span className="section-label">// About the Project</span> */}
         <h2 className="section-title">
           Redefining What <span>Robots</span> Can Do
         </h2>
