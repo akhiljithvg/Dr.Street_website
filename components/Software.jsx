@@ -78,7 +78,7 @@ export default function Software() {
       icon: <FileCode size={22} />,
       title: 'Run Standalone Python Script',
       desc: 'Test your camera feed, OpenCV filters, and serial connections directly without ROS dependencies using the standalone prototyping script.',
-      code: 'cd /home/pi/ak_ws/src/duckie\npython3 followlaneesp.py'
+      code: 'cd /home/pi/ak_ws/src/dr_street\npython3 followlaneesp.py'
     },
     {
       num: '02',
@@ -106,14 +106,14 @@ export default function Software() {
       icon: <FolderOpen size={22} />,
       title: 'Build the Workspace Packages',
       desc: 'Navigate to your ROS 2 workspace root folder, run colcon build to compile the perception and bringup packages, and source the local install.',
-      code: 'cd /home/pi/ak_ws\ncolcon build --packages-select duckie_perception duckie_bringup duckie_motor duckie_safety\n\nsource install/setup.bash'
+      code: 'cd /home/pi/ak_ws\ncolcon build --packages-select dr_street_perception dr_street_bringup dr_street_motor dr_street_safety\n\nsource install/setup.bash'
     },
     {
       num: '06',
       icon: <PlayCircle size={22} />,
       title: 'Launch the Robot Systems',
       desc: 'Run the master launch configuration script to spin up the lane perception, safety nodes, and motor communications in a unified environment.',
-      code: 'ros2 launch duckie_bringup bringup.launch.py'
+      code: 'ros2 launch dr_street_bringup bringup.launch.py'
     }
   ];
 

@@ -145,7 +145,7 @@ export default function Hero() {
             Explore Documentation <ArrowRight size={18} />
           </a>
           <a
-            href="https://github.com/akhiljithvg/duckie.git"
+            href="https://github.com/akhiljithvg/Dr.Street.git"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary"

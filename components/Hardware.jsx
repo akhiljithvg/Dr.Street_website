@@ -122,7 +122,7 @@ void loop() {
           Assembly & <span>Wiring</span>
         </h2>
         <p className="section-desc">
-          How to wire and assemble the physical systems of the Duckie autonomous robot. Two primary configurations are supported.
+          How to wire and assemble the physical systems of the Dr.Street autonomous robot. Two primary configurations are supported.
         </p>
       </div>
 
@@ -282,7 +282,7 @@ void loop() {
           <div>
             <h3 style={{ color: '#fff', fontSize: '1.25rem', marginBottom: '10px', fontWeight: 600 }}>Direct GPIO Configuration</h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.5 }}>
-              For simpler builds without an intermediate co-processor, you can connect the motor driver (L298N) directly to the Raspberry Pi's GPIO pins. The `duckie_motor` ROS 2 package is preconfigured to actuate via this wiring.
+              For simpler builds without an intermediate co-processor, you can connect the motor driver (L298N) directly to the Raspberry Pi's GPIO pins. The `dr_street_motor` ROS 2 package is preconfigured to actuate via this wiring.
             </p>
           </div>
 

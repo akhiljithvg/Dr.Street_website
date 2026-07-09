@@ -76,7 +76,7 @@ export default function About() {
           Project <span>Overview</span>
         </h2>
         <p className="section-desc">
-          Duckie is a hands-on ROS 2 project designed to teach the fundamentals of computer vision, autonomous navigation, and embedded hardware interfaces.
+          Dr.Street is a hands-on ROS 2 project designed to teach the fundamentals of computer vision, autonomous navigation, and embedded hardware interfaces.
         </p>
       </div>
 
@@ -99,7 +99,7 @@ export default function About() {
               fontFamily: "'Outfit', sans-serif",
             }}
           >
-            What is <span>Duckie?</span>
+            What is <span>Dr.Street?</span>
           </h3>
           <p
             style={{
@@ -109,7 +109,7 @@ export default function About() {
               fontSize: '0.98rem',
             }}
           >
-            The Duckie project is an autonomous mobile robot platform that implements a full closed-loop control system. Using a standard USB camera feed, it extracts red lane markings with OpenCV color-mask filters, scans for ArUco markers to make turn selections at junctions, and transmits parsed speed commands over serial UART to an ESP32 microcontroller driving a dual H-bridge motor controller.
+            The Dr.Street project is an autonomous mobile robot platform that implements a full closed-loop control system. Using a standard USB camera feed, it extracts red lane markings with OpenCV color-mask filters, scans for ArUco markers to make turn selections at junctions, and transmits parsed speed commands over serial UART to an ESP32 microcontroller driving a dual H-bridge motor controller.
           </p>
           <p
             style={{

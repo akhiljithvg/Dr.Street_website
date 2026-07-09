@@ -140,7 +140,7 @@ export default function Gallery() {
     {
       question: 'Motors oscillating / overcorrecting on straight lanes',
       answer: 'Oscillations mean your STEER_GAIN (Kp) is too high or the STEER_D (Kd) derivative dampening is too low. Try decreasing STEER_GAIN by 0.1 and increasing STEER_D by 0.05 in your launch configuration.',
-      code: 'ros2 launch duckie_bringup bringup.launch.py steer_gain:=0.6 steer_d:=0.35'
+      code: 'ros2 launch dr_street_bringup bringup.launch.py steer_gain:=0.6 steer_d:=0.35'
     }
   ];
 
@@ -223,7 +223,7 @@ export default function Gallery() {
             Troubleshooting <span>Guide</span>
           </h2>
           <p className="section-desc">
-            Common issues encountered when deploying the Duckie robot, with corresponding shell diagnostics.
+            Common issues encountered when deploying the Dr.Street robot, with corresponding shell diagnostics.
           </p>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
@@ -244,7 +244,7 @@ export default function Gallery() {
           Project <span>Gallery</span>
         </h2>
         <p className="section-desc">
-          Visual documentation of the Duckie bot in development, calibration, and autonomous navigation.
+          Visual documentation of the Dr.Street robot in development, calibration, and autonomous navigation.
         </p>
       </div>
 
