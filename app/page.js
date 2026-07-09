@@ -1,5 +1,4 @@
 'use client';
-import CustomCursor from "@/components/CustomCursor";
 import ThreeBackground from "@/components/ThreeBackground";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
@@ -16,7 +15,6 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main style={{ position: "relative", width: "100%", overflowX: "hidden", display: 'flex' }}>
-      <CustomCursor />
       <ThreeBackground />
       
       <Sidebar />

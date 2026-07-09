@@ -52,13 +52,6 @@ a {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Hide cursor on hover-enabled devices to support the custom cursor */
-@media (hover: hover) {
-  body, a, button, [role="button"], input, textarea, select {
-    cursor: none;
-  }
-}
-
 /* ─── CUSTOM SCROLLBAR ──────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 8px;
@@ -101,52 +94,6 @@ a {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
-}
-
-/* ─── CUSTOM CURSOR ─────────────────────────────────────── */
-#cursor-dot {
-  width: 4px;
-  height: 4px;
-  background-color: #fff;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, background-color 0.2s;
-  mix-blend-mode: difference;
-}
-
-#cursor-ring {
-  width: 24px;
-  height: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, border-color 0.2s, background-color 0.2s;
-}
-
-/* Cursor Hover State */
-body.cursor-hover #cursor-dot {
-  width: 6px;
-  height: 6px;
-}
-
-body.cursor-hover #cursor-ring {
-  width: 40px;
-  height: 40px;
-  border-color: rgba(255, 255, 255, 0.8);
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-/* Disable cursor elements on mobile */
-@media (max-width: 1024px) {
-  #cursor-dot, #cursor-ring {
-    display: none !important;
-  }
 }
 
 /* ─── SCROLL PROGRESS ───────────────────────────────────── */
