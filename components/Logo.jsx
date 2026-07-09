@@ -6,8 +6,8 @@ export default function Logo({ scale = 1 }) {
     <Image 
       src={logoImg} 
       alt="Dr.Street Logo"
-      width={120 * scale} 
-      height={45 * scale} 
+      width={250 * scale} 
+      height={70 * scale} 
       style={{ objectFit: 'contain', flexShrink: 0 }}
       priority
     />

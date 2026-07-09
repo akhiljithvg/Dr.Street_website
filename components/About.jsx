@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+import { Camera, Cpu, Settings, Compass } from 'lucide-react';
 
 function Counter({ target, suffix = '', duration = 1800 }) {
   const [count, setCount] = useState(0);
@@ -70,7 +71,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" style={{ background: '#050505', position: 'relative' }}>
+    <section id="about" style={{ position: 'relative' }}>
       <div className="section-header">
         <h2 className="section-title">
           Project <span>Overview</span>
@@ -122,7 +123,7 @@ export default function About() {
             By working through this codebase, developers learn two key robotics approaches: a direct **Standalone Python script** for rapid prototyping, and a modular **ROS 2 architecture** for professional production-grade design.
           </p>
 
-          <h4 style={{ fontSize: '1.1rem', marginBottom: '15px', color: '#fff', fontWeight: 600 }}>What You'll Learn</h4>
+          <h4 style={{ fontSize: '1.1rem', marginBottom: '15px', color: '#fff', fontWeight: 600 }}>Technologies Used</h4>
           <div
             style={{
               display: 'flex',
@@ -214,7 +215,7 @@ export default function About() {
 
         {/* Right Side: Prerequisites & Hardware Animation */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-          {/* Prerequisites Box */}
+          {/* Key Features Box */}
           <div
             className="glassmorphism subtle-border"
             style={{
@@ -222,49 +223,79 @@ export default function About() {
               borderRadius: '24px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '24px',
+              gap: '28px',
             }}
           >
-            <h3 style={{ fontSize: '1.4rem', color: '#fff', fontWeight: 600, borderBottom: '1px solid rgba(255, 255, 255, 0.06)', paddingBottom: '12px' }}>
-              🔧 Prerequisites & Requirements
+            <h3 style={{ fontSize: '1.4rem', color: '#fff', fontWeight: 600, borderBottom: '1px solid rgba(255, 255, 255, 0.06)', paddingBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              🚀 Key Features & Tech Stack
             </h3>
 
-            {/* Hardware reqs */}
-            <div>
-              <h5 style={{ color: 'var(--accent-emerald)', fontWeight: 600, fontSize: '0.88rem', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.05em' }}>
-                Hardware Requirements
-              </h5>
-              <ul style={{ paddingLeft: '20px', color: 'var(--text-secondary)', fontSize: '0.88rem', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <li><strong>Processor</strong>: Raspberry Pi 4 (4GB/8GB LPDDR4 recommended)</li>
-                <li><strong>Visual Input</strong>: USB webcam (standard Linux V4L2 compatible)</li>
-                <li><strong>Controller</strong>: ESP32 development board (UART co-processor)</li>
-                <li><strong>Mechanical</strong>: Dual motor driver chip (L298N/L293D) & DC geared motors</li>
-                <li><strong>Power</strong>: Dual isolated rails (Pi power bank + motor battery pack)</li>
-              </ul>
+            {/* Feature 1 */}
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              <div style={{ background: 'rgba(0, 128, 0, 0.1)', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <Camera size={22} color="var(--accent-neon)" />
+              </div>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
+                  <h5 style={{ color: '#fff', fontWeight: 600, fontSize: '0.98rem', margin: 0 }}>Autonomous Lane Tracking</h5>
+                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>OpenCV</span>
+                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>Python</span>
+                </div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.5' }}>
+                  Real-time lane boundary detection and centerline extraction utilizing custom OpenCV color-mask filters.
+                </p>
+              </div>
             </div>
 
-            {/* Software reqs */}
-            <div>
-              <h5 style={{ color: 'var(--accent-emerald)', fontWeight: 600, fontSize: '0.88rem', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.05em' }}>
-                Software Requirements
-              </h5>
-              <ul style={{ paddingLeft: '20px', color: 'var(--text-secondary)', fontSize: '0.88rem', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <li><strong>Operating System</strong>: Ubuntu Server 24.04 LTS (Noble Numbat)</li>
-                <li><strong>SDK Framework</strong>: ROS 2 Jazzy Jalisco (desktop or base installation)</li>
-                <li><strong>Languages</strong>: Python 3.10+ and C++17 (Arduino CLI support)</li>
-                <li><strong>Libraries</strong>: OpenCV Python (`cv2`), `numpy`, and `pyserial`</li>
-              </ul>
+            {/* Feature 2 */}
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              <div style={{ background: 'rgba(0, 128, 0, 0.1)', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <Settings size={22} color="var(--accent-neon)" />
+              </div>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
+                  <h5 style={{ color: '#fff', fontWeight: 600, fontSize: '0.98rem', margin: 0 }}>PD Control Algorithm</h5>
+                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>Control Loop</span>
+                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>NumPy</span>
+                </div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.5' }}>
+                  Proportional-Derivative feedback steering loop adjustments for smooth, stable, and accurate road centering.
+                </p>
+              </div>
             </div>
 
-            {/* Network reqs */}
-            <div>
-              <h5 style={{ color: 'var(--accent-emerald)', fontWeight: 600, fontSize: '0.88rem', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.05em' }}>
-                Network Requirements
-              </h5>
-              <ul style={{ paddingLeft: '20px', color: 'var(--text-secondary)', fontSize: '0.88rem', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <li>Internet access for system provisioning and ROS package installs</li>
-                <li>SSH credentials configured on the Pi for remote terminal scripting</li>
-              </ul>
+            {/* Feature 3 */}
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              <div style={{ background: 'rgba(0, 128, 0, 0.1)', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <Compass size={22} color="var(--accent-neon)" />
+              </div>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
+                  <h5 style={{ color: '#fff', fontWeight: 600, fontSize: '0.98rem', margin: 0 }}>ArUco Marker Navigation</h5>
+                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>Aruco</span>
+                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>ROS 2</span>
+                </div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.5' }}>
+                  Computer vision landmark marker parsing enabling intelligent routing and turning choices at junctions.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 4 */}
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              <div style={{ background: 'rgba(0, 128, 0, 0.1)', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <Cpu size={22} color="var(--accent-neon)" />
+              </div>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
+                  <h5 style={{ color: '#fff', fontWeight: 600, fontSize: '0.98rem', margin: 0 }}>Serial Hardware Interface</h5>
+                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>ESP32</span>
+                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>C++ / UART</span>
+                </div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.5' }}>
+                  Microcontroller motor actuation over UART communication co-processing speed commands.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -312,7 +343,7 @@ export default function About() {
                 animation: 'float 3s ease-in-out infinite',
               }}
             >
-              🦆
+              🤖
             </div>
           </div>
         </div>

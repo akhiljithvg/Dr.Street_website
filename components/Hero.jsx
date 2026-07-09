@@ -43,52 +43,18 @@ export default function Hero() {
     <section
       id="hero"
       style={{
-        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
-        padding: '0 8%',
-        background: 'radial-gradient(circle at 10% 20%, rgba(57, 255, 20, 0.03) 0%, transparent 60%)',
         zIndex: 5,
-        overflow: 'hidden',
       }}
     >
-      {/* High-tech overlay grid */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundImage: 'linear-gradient(rgba(57, 255, 20, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(57, 255, 20, 0.02) 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-          pointerEvents: 'none',
-          zIndex: 1,
-        }}
-      />
-
-      {/* Futuristic Glow backdrops */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '30%',
-          left: '10%',
-          width: '450px',
-          height: '450px',
-          background: 'radial-gradient(circle, rgba(57, 255, 20, 0.04) 0%, transparent 70%)',
-          pointerEvents: 'none',
-          zIndex: 1,
-          filter: 'blur(40px)',
-        }}
-      />
-
       <div
         style={{
           position: 'relative',
-          maxWidth: '800px',
+          width: '100%',
           zIndex: 10,
-          paddingTop: '80px',
+          paddingTop: '20px',
         }}
       >
         {/* Badge */}
@@ -141,14 +107,11 @@ export default function Hero() {
             flexWrap: 'wrap',
           }}
         >
-          <a href="#about" onClick={handleExploreClick} className="btn-primary">
-            Explore Documentation <ArrowRight size={18} />
-          </a>
           <a
             href="https://github.com/akhiljithvg/Dr.Street.git"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary"
+            className="btn-primary"
           >
             <FaGithub size={18} /> View GitHub
           </a>
@@ -192,48 +155,7 @@ export default function Hero() {
         </svg>
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '40px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '8px',
-          zIndex: 10,
-          color: 'var(--text-secondary)',
-          fontSize: '0.75rem',
-          letterSpacing: '0.15em',
-          textTransform: 'uppercase',
-          fontWeight: 500,
-        }}
-      >
-        <span>Scroll</span>
-        <div
-          style={{
-            width: '2px',
-            height: '45px',
-            background: 'linear-gradient(to bottom, var(--accent-neon), transparent)',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '30%',
-              background: 'var(--text-secondary)',
-              animation: 'scrollDown 2.2s cubic-bezier(0.25, 0.8, 0.25, 1) infinite',
-            }}
-          />
-        </div>
-      </div>
+
 
       {/* Scrolldown keyframes and responsiveness */}
       <style jsx>{`

@@ -192,8 +192,7 @@ section {
   overflow: hidden;
   z-index: 2;
   border-bottom: 1px solid var(--border-subtle);
-  max-width: 900px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 @media (max-width: 768px) {

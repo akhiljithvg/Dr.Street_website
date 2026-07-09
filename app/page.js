@@ -1,64 +1,48 @@
 'use client';
 import ThreeBackground from "@/components/ThreeBackground";
-import Navbar from "@/components/Navbar";
-import Sidebar from "@/components/Sidebar";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Features from "@/components/Features";
-import Architecture from "@/components/Architecture";
-import Hardware from "@/components/Hardware";
-import Software from "@/components/Software";
-import Capabilities from "@/components/Capabilities";
-import Gallery from "@/components/Gallery";
-import Footer from "@/components/Footer";
+import Logo from "@/components/Logo";
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 export default function Home() {
   return (
-    <main style={{ position: "relative", width: "100%", overflowX: "hidden", display: 'flex' }}>
+    <main style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <ThreeBackground />
       
-      <Sidebar />
-      
       <div 
-        className="main-doc-content"
         style={{ 
-          flex: 1, 
-          marginLeft: '260px', /* Width of sidebar */
           position: "relative", 
           zIndex: 10,
-          minHeight: '100vh',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+          background: 'rgba(0, 0, 0, 0.4)',
+          padding: '60px 80px',
+          borderRadius: '24px',
+          backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255,255,255,0.05)',
+          boxShadow: '0 30px 60px rgba(0,0,0,0.5)'
         }}
       >
-        <Navbar />
-        <div style={{ flex: 1, padding: '20px 0' }}>
-          <Hero />
-          <About />
-          <Features />
-          <Architecture />
-          <Hardware />
-          <Software />
-          <Capabilities />
-          <Gallery />
+        <div style={{ marginBottom: '30px' }}>
+          <Logo scale={1.8} />
         </div>
-        <Footer />
-      </div>
+        
+        <h1 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '20px', letterSpacing: '0.02em' }}>
+          Welcome to Dr.Street
+        </h1>
+        
+        <p style={{ color: 'var(--text-secondary)', maxWidth: '500px', lineHeight: 1.6, marginBottom: '40px', fontSize: '1.1rem' }}>
+          The complete operation manual and documentation for assembling, programming, and operating your autonomous robot.
+        </p>
 
-      <style jsx global>{`
-        @media (max-width: 1024px) {
-          .main-doc-content {
-            marginLeft: 0 !important;
-          }
-          .docs-sidebar {
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-          }
-          .docs-sidebar.open {
-            transform: translateX(0);
-          }
-        }
-      `}</style>
+        <Link href="/docs/intro" style={{ textDecoration: 'none' }}>
+          <button className="btn-primary" style={{ padding: '16px 32px', fontSize: '1.1rem' }}>
+            Enter Documentation <ArrowRight size={20} />
+          </button>
+        </Link>
+      </div>
     </main>
   );
 }
