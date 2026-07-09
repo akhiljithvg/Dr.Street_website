@@ -224,7 +224,7 @@ export default function About() {
               gap: '15px'
             }}>
               {/* Feature 1 */}
-              <div className="glassmorphism subtle-border feature-card" style={{ padding: '16px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+              <div className="glassmorphism subtle-border feature-card" style={{ padding: '16px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform 0.3s ease, box-shadow 0.3s ease', borderColor: 'rgba(92, 62, 232, 0.2)', background: 'radial-gradient(circle at 20% 20%, rgba(92, 62, 232, 0.06) 0%, rgba(10, 10, 10, 0.8) 85%)' }}>
                 <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(92, 62, 232, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <SiOpencv size={18} color="#5C3EE8" />
                 </div>
@@ -237,7 +237,7 @@ export default function About() {
               </div>
               
               {/* Feature 2 */}
-              <div className="glassmorphism subtle-border feature-card" style={{ padding: '16px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+              <div className="glassmorphism subtle-border feature-card" style={{ padding: '16px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform 0.3s ease, box-shadow 0.3s ease', borderColor: 'rgba(55, 118, 171, 0.2)', background: 'radial-gradient(circle at 20% 20%, rgba(55, 118, 171, 0.06) 0%, rgba(10, 10, 10, 0.8) 85%)' }}>
                 <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(55, 118, 171, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <SiPython size={18} color="#3776AB" />
                 </div>
@@ -250,7 +250,7 @@ export default function About() {
               </div>
 
               {/* Feature 3 */}
-              <div className="glassmorphism subtle-border feature-card" style={{ padding: '16px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+              <div className="glassmorphism subtle-border feature-card" style={{ padding: '16px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform 0.3s ease, box-shadow 0.3s ease', borderColor: 'rgba(255, 255, 255, 0.15)', background: 'radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.04) 0%, rgba(10, 10, 10, 0.8) 85%)' }}>
                 <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <SiRos size={18} color="#ffffff" />
                 </div>
@@ -263,7 +263,7 @@ export default function About() {
               </div>
 
               {/* Feature 4 */}
-              <div className="glassmorphism subtle-border feature-card" style={{ padding: '16px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+              <div className="glassmorphism subtle-border feature-card" style={{ padding: '16px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform 0.3s ease, box-shadow 0.3s ease', borderColor: 'rgba(0, 151, 157, 0.2)', background: 'radial-gradient(circle at 20% 20%, rgba(0, 151, 157, 0.06) 0%, rgba(10, 10, 10, 0.8) 85%)' }}>
                 <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(0, 151, 157, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <SiArduino size={18} color="#00979D" />
                 </div>
@@ -277,53 +277,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Mini Visual Core */}
-          <div
-            className="about-visual"
-            style={{
-              position: 'relative',
-              height: '180px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: 'radial-gradient(circle, rgba(57, 255, 20, 0.02) 0%, transparent 65%)',
-              border: '1px solid rgba(255,255,255,0.01)',
-              borderRadius: '24px',
-              overflow: 'hidden',
-            }}
-          >
-            <div
-              className="about-ring"
-              style={{
-                position: 'absolute',
-                width: '120px',
-                height: '120px',
-                borderRadius: '50%',
-                border: '1px dashed rgba(57, 255, 20, 0.15)',
-                transform: `rotate(0deg) translate(${mouseOffset.x * 0.4}px, ${mouseOffset.y * 0.4}px)`,
-                animation: 'spin 20s linear infinite',
-              }}
-            />
-            <div
-              style={{
-                position: 'relative',
-                width: '50px',
-                height: '50px',
-                borderRadius: '50%',
-                background: 'rgba(5, 5, 5, 0.9)',
-                border: '2px solid var(--accent-neon)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '1.4rem',
-                boxShadow: '0 0 20px rgba(57, 255, 20, 0.2)',
-                zIndex: 5,
-                animation: 'float 3s ease-in-out infinite',
-              }}
-            >
-              🤖
-            </div>
-          </div>
+
         </div>
       </div>
 
