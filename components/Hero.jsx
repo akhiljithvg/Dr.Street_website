@@ -57,28 +57,6 @@ export default function Hero() {
           paddingTop: '20px',
         }}
       >
-        {/* Badge */}
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            background: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid var(--border-subtle)',
-            color: 'var(--text-primary)',
-            padding: '6px 16px',
-            borderRadius: '4px',
-            fontSize: '0.75rem',
-            fontWeight: 600,
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            marginBottom: '30px',
-            backdropFilter: 'blur(10px)',
-          }}
-        >
-          ROS 2 Autonomous Robot
-        </div>
-
         {/* Main Logo */}
         <div style={{ marginBottom: '40px' }}>
           <Logo scale={2} />

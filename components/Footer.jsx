@@ -13,9 +13,7 @@ export default function Footer() {
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
         <Logo scale={0.8} />
       </div>
-      <p style={{ color: 'var(--text-secondary)', marginBottom: '30px' }}>
-        Hands-on ROS 2 Autonomous Robotics Project.
-      </p>
+
       <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
         <a href="https://github.com/akhiljithvg/Dr.Street.git" target="_blank" rel="noreferrer" style={{
           color: 'var(--text-primary)', textDecoration: 'none', transition: 'color 0.3s'

@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { Camera, Cpu, Settings, Compass } from 'lucide-react';
+import Image from 'next/image';
+import { SiOpencv, SiPython, SiRos, SiArduino } from 'react-icons/si';
 
 function Counter({ target, suffix = '', duration = 1800 }) {
   const [count, setCount] = useState(0);
@@ -110,7 +111,7 @@ export default function About() {
               fontSize: '0.98rem',
             }}
           >
-            The Dr.Street project is an autonomous mobile robot platform that implements a full closed-loop control system. Using a standard USB camera feed, it extracts red lane markings with OpenCV color-mask filters, scans for ArUco markers to make turn selections at junctions, and transmits parsed speed commands over serial UART to an ESP32 microcontroller driving a dual H-bridge motor controller.
+            Dr. Street is an advanced autonomous mobile robot (AMR) platform meticulously engineered to bridge the gap between academic robotics theory and industrial deployment.
           </p>
           <p
             style={{
@@ -120,7 +121,7 @@ export default function About() {
               fontSize: '0.98rem',
             }}
           >
-            By working through this codebase, developers learn two key robotics approaches: a direct **Standalone Python script** for rapid prototyping, and a modular **ROS 2 architecture** for professional production-grade design.
+            Designed as a high-fidelity environment for mastering ROS 2 orchestration and real-time edge AI, Dr. Street provides researchers, engineers, and developers with the robust foundation required to pioneer the next generation of autonomous systems.
           </p>
 
           <h4 style={{ fontSize: '1.1rem', marginBottom: '15px', color: '#fff', fontWeight: 600 }}>Technologies Used</h4>
@@ -213,88 +214,65 @@ export default function About() {
           </div>
         </div>
 
-        {/* Right Side: Prerequisites & Hardware Animation */}
+        {/* Right Side: Key Features & Hardware Animation */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-          {/* Key Features Box */}
-          <div
-            className="glassmorphism subtle-border"
-            style={{
-              padding: '35px',
-              borderRadius: '24px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '28px',
-            }}
-          >
-            <h3 style={{ fontSize: '1.4rem', color: '#fff', fontWeight: 600, borderBottom: '1px solid rgba(255, 255, 255, 0.06)', paddingBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              🚀 Key Features & Tech Stack
-            </h3>
-
-            {/* Feature 1 */}
-            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-              <div style={{ background: 'rgba(0, 128, 0, 0.1)', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <Camera size={22} color="var(--accent-neon)" />
-              </div>
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
-                  <h5 style={{ color: '#fff', fontWeight: 600, fontSize: '0.98rem', margin: 0 }}>Autonomous Lane Tracking</h5>
-                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>OpenCV</span>
-                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>Python</span>
+          {/* Key Features Sidebar */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '15px'
+            }}>
+              {/* Feature 1 */}
+              <div className="glassmorphism subtle-border feature-card" style={{ padding: '16px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(92, 62, 232, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <SiOpencv size={18} color="#5C3EE8" />
                 </div>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.5' }}>
-                  Real-time lane boundary detection and centerline extraction utilizing custom OpenCV color-mask filters.
-                </p>
-              </div>
-            </div>
-
-            {/* Feature 2 */}
-            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-              <div style={{ background: 'rgba(0, 128, 0, 0.1)', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <Settings size={22} color="var(--accent-neon)" />
-              </div>
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
-                  <h5 style={{ color: '#fff', fontWeight: 600, fontSize: '0.98rem', margin: 0 }}>PD Control Algorithm</h5>
-                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>Control Loop</span>
-                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>NumPy</span>
+                <div>
+                  <h5 style={{ color: '#fff', fontWeight: 600, fontSize: '0.88rem', marginBottom: '4px' }}>Lane Tracking</h5>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', lineHeight: '1.4', margin: 0 }}>
+                    Real-time boundary detection using OpenCV color masks.
+                  </p>
                 </div>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.5' }}>
-                  Proportional-Derivative feedback steering loop adjustments for smooth, stable, and accurate road centering.
-                </p>
               </div>
-            </div>
-
-            {/* Feature 3 */}
-            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-              <div style={{ background: 'rgba(0, 128, 0, 0.1)', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <Compass size={22} color="var(--accent-neon)" />
-              </div>
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
-                  <h5 style={{ color: '#fff', fontWeight: 600, fontSize: '0.98rem', margin: 0 }}>ArUco Marker Navigation</h5>
-                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>Aruco</span>
-                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>ROS 2</span>
+              
+              {/* Feature 2 */}
+              <div className="glassmorphism subtle-border feature-card" style={{ padding: '16px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(55, 118, 171, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <SiPython size={18} color="#3776AB" />
                 </div>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.5' }}>
-                  Computer vision landmark marker parsing enabling intelligent routing and turning choices at junctions.
-                </p>
-              </div>
-            </div>
-
-            {/* Feature 4 */}
-            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-              <div style={{ background: 'rgba(0, 128, 0, 0.1)', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <Cpu size={22} color="var(--accent-neon)" />
-              </div>
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
-                  <h5 style={{ color: '#fff', fontWeight: 600, fontSize: '0.98rem', margin: 0 }}>Serial Hardware Interface</h5>
-                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>ESP32</span>
-                  <span style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 500 }}>C++ / UART</span>
+                <div>
+                  <h5 style={{ color: '#fff', fontWeight: 600, fontSize: '0.88rem', marginBottom: '4px' }}>PD Control</h5>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', lineHeight: '1.4', margin: 0 }}>
+                    Closed-loop steering feedback loop for stable road centering.
+                  </p>
                 </div>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.5' }}>
-                  Microcontroller motor actuation over UART communication co-processing speed commands.
-                </p>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="glassmorphism subtle-border feature-card" style={{ padding: '16px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <SiRos size={18} color="#ffffff" />
+                </div>
+                <div>
+                  <h5 style={{ color: '#fff', fontWeight: 600, fontSize: '0.88rem', marginBottom: '4px' }}>ArUco Nav</h5>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', lineHeight: '1.4', margin: 0 }}>
+                    Fiducial marker detection enabling routing choices at junctions.
+                  </p>
+                </div>
+              </div>
+
+              {/* Feature 4 */}
+              <div className="glassmorphism subtle-border feature-card" style={{ padding: '16px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(0, 151, 157, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <SiArduino size={18} color="#00979D" />
+                </div>
+                <div>
+                  <h5 style={{ color: '#fff', fontWeight: 600, fontSize: '0.88rem', marginBottom: '4px' }}>ESP32 Link</h5>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', lineHeight: '1.4', margin: 0 }}>
+                    Motor speed actuation co-processing over UART protocol.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -355,6 +333,11 @@ export default function About() {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
           }
+        }
+        .feature-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+          border-color: rgba(57, 255, 20, 0.4);
         }
       `}</style>
     </section>
