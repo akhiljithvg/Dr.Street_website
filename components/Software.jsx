@@ -1,70 +1,137 @@
 'use client';
 
-import {
-  Layers,
-  Sparkles,
-  Eye,
-  Globe,
-  Brain,
-  Sliders,
+import { useState } from 'react';
+import { 
+  Clipboard, 
+  Check, 
+  Terminal, 
+  Settings, 
+  Download, 
+  PlayCircle,
+  FileCode,
+  FolderOpen
 } from 'lucide-react';
+
+function TerminalBlock({ code }) {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div style={{
+      background: '#060606',
+      borderRadius: '8px',
+      border: '1px solid rgba(255,255,255,0.06)',
+      overflow: 'hidden',
+      marginTop: '10px',
+      fontFamily: "'Courier New', Courier, monospace",
+      position: 'relative'
+    }}>
+      <div style={{
+        background: '#0d0d0d',
+        padding: '6px 12px',
+        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        fontSize: '0.72rem',
+        color: '#555',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+      }}>
+        <span>bash</span>
+        <button 
+          onClick={handleCopy}
+          style={{
+            background: 'transparent',
+            border: 'none',
+            color: copied ? 'var(--accent-neon)' : '#555',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            fontSize: '0.72rem',
+            transition: 'color 0.2s'
+          }}
+        >
+          {copied ? <Check size={11} /> : <Clipboard size={11} />}
+          {copied ? 'Copied!' : 'Copy'}
+        </button>
+      </div>
+      <pre style={{
+        padding: '12px 16px',
+        margin: 0,
+        overflowX: 'auto',
+        fontSize: '0.8rem',
+        color: '#999',
+        lineHeight: 1.4
+      }}><code>{code}</code></pre>
+    </div>
+  );
+}
 
 export default function Software() {
   const steps = [
     {
       num: '01',
-      icon: <Layers size={22} />,
-      title: 'Sensor Data Acquisition',
-      desc: 'Onboard drivers retrieve parallel streams from camera lenses, gyroscopes, distance sensors, and optical wheel encoders at synchronized polling intervals.',
+      icon: <FileCode size={22} />,
+      title: 'Run Standalone Python Script',
+      desc: 'Test your camera feed, OpenCV filters, and serial connections directly without ROS dependencies using the standalone prototyping script.',
+      code: 'cd /home/pi/ak_ws/src/duckie\npython3 followlaneesp.py'
     },
     {
       num: '02',
-      icon: <Sparkles size={22} />,
-      title: 'Data Preprocessing',
-      desc: 'Raw streams are cleaned, synchronized, and calibrated. Image frames undergo distortion correction and color space conversion to optimize downstream tasks.',
+      icon: <Settings size={22} />,
+      title: 'Configure ROS 2 Keyrings & Repositories',
+      desc: 'Add the official ROS 2 Jazzy GPG security keys and configure your apt source list to access the ROS 2 packages.',
+      code: 'sudo curl -sSL https://repo.ros2.org/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg\n\necho "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://repo.ros2.org/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null\n\nsudo apt update'
     },
     {
       num: '03',
-      icon: <Eye size={22} />,
-      title: 'Computer Vision Analysis',
-      desc: 'The CV pipeline processes frames using Canny edge filters and Hough line transforms for lane navigation, alongside YOLO models for dynamic object tags.',
+      icon: <Download size={22} />,
+      title: 'Install ROS 2 Jazzy & Build Extension',
+      desc: 'Install the core ROS 2 Jazzy desktop libraries along with colcon build extensions required to compile packages.',
+      code: 'sudo apt install -y ros-jazzy-desktop python3-colcon-common-extensions'
     },
     {
       num: '04',
-      icon: <Globe size={22} />,
-      title: 'SLAM & Localization',
-      desc: 'Simultaneous Mapping builds 2D grid occupancy networks while Extended Kalman Filters fuse IMU and odometry for consistent coordinate estimation.',
+      icon: <Terminal size={22} />,
+      title: 'Source Shell Environments',
+      desc: 'Source the ROS 2 environment setup file to map global terminals, and add the configuration to your user profile for auto-sourcing.',
+      code: 'source /opt/ros/jazzy/setup.bash\necho "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc'
     },
     {
       num: '05',
-      icon: <Brain size={22} />,
-      title: 'AI Decision Making',
-      desc: 'The behaviors decision engine evaluates localization parameters against dynamic obstacle paths, selecting optimal paths based on trained models.',
+      icon: <FolderOpen size={22} />,
+      title: 'Build the Workspace Packages',
+      desc: 'Navigate to your ROS 2 workspace root folder, run colcon build to compile the perception and bringup packages, and source the local install.',
+      code: 'cd /home/pi/ak_ws\ncolcon build --packages-select duckie_perception duckie_bringup duckie_motor duckie_safety\n\nsource install/setup.bash'
     },
     {
       num: '06',
-      icon: <Sliders size={22} />,
-      title: 'Motor Control Execution',
-      desc: 'PID nodes calculate velocity vectors and convert them into PWM duty cycles, using encoder feedbacks to maintain steady speed and heading direction.',
-    },
+      icon: <PlayCircle size={22} />,
+      title: 'Launch the Robot Systems',
+      desc: 'Run the master launch configuration script to spin up the lane perception, safety nodes, and motor communications in a unified environment.',
+      code: 'ros2 launch duckie_bringup bringup.launch.py'
+    }
   ];
 
   return (
     <section id="software" style={{ background: '#050505' }}>
       <div className="section-header">
-        <span className="section-label">// Processing Pipeline</span>
         <h2 className="section-title">
-          Software <span>Workflow</span>
+          Software <span>Setup & Execution</span>
         </h2>
         <p className="section-desc">
-          A layered pipeline that converts raw environment data streams into exact mechanical outputs.
+          Follow this structured timeline to configure your Linux environment, install ROS 2 Jazzy, build packages, and launch autonomous scripts.
         </p>
       </div>
 
       <div
         style={{
           position: 'relative',
-          maxWidth: '800px',
+          maxWidth: '850px',
           margin: '40px auto 0 auto',
         }}
       >
@@ -145,10 +212,13 @@ export default function Software() {
                     STEP {step.num}
                   </span>
                 </div>
-                <h3 style={{ fontSize: '1.25rem', color: '#fff', fontWeight: 600 }}>{step.title}</h3>
-                <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                <h3 style={{ fontSize: '1.2rem', color: '#fff', fontWeight: 600 }}>{step.title}</h3>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
                   {step.desc}
                 </p>
+
+                {/* Copiable terminal block */}
+                <TerminalBlock code={step.code} />
               </div>
             </div>
           ))}

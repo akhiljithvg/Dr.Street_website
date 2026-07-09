@@ -1,11 +1,148 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Image as ImageIcon, Cpu, Eye, Navigation, Map, Shield, HelpCircle, X } from 'lucide-react';
+import { HelpCircle, ChevronDown, ChevronUp, Image as ImageIcon, Cpu, Eye, Navigation, X, Clipboard, Check } from 'lucide-react';
+
+function TerminalBlock({ code }) {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div style={{
+      background: '#060606',
+      borderRadius: '8px',
+      border: '1px solid rgba(255,255,255,0.06)',
+      overflow: 'hidden',
+      marginTop: '10px',
+      fontFamily: "'Courier New', Courier, monospace",
+      position: 'relative'
+    }}>
+      <div style={{
+        background: '#0d0d0d',
+        padding: '6px 12px',
+        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        fontSize: '0.72rem',
+        color: '#555',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+      }}>
+        <span>bash</span>
+        <button 
+          onClick={handleCopy}
+          style={{
+            background: 'transparent',
+            border: 'none',
+            color: copied ? 'var(--accent-neon)' : '#555',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            fontSize: '0.72rem',
+            transition: 'color 0.2s'
+          }}
+        >
+          {copied ? <Check size={11} /> : <Clipboard size={11} />}
+          {copied ? 'Copied!' : 'Copy'}
+        </button>
+      </div>
+      <pre style={{
+        padding: '12px 16px',
+        margin: 0,
+        overflowX: 'auto',
+        fontSize: '0.8rem',
+        color: '#999',
+        lineHeight: 1.4
+      }}><code>{code}</code></pre>
+    </div>
+  );
+}
+
+function AccordionItem({ question, answer, code = '' }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div 
+      className="subtle-border"
+      style={{
+        background: 'rgba(14, 14, 14, 0.55)',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        border: '1px solid rgba(255,255,255,0.03)',
+        transition: 'all 0.3s'
+      }}
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        style={{
+          width: '100%',
+          padding: '20px 24px',
+          background: 'none',
+          border: 'none',
+          color: '#fff',
+          textAlign: 'left',
+          fontSize: '1.05rem',
+          fontWeight: 600,
+          cursor: 'pointer',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: '15px'
+        }}
+      >
+        <span style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <HelpCircle size={18} style={{ color: 'var(--accent-neon)', flexShrink: 0 }} />
+          {question}
+        </span>
+        {isOpen ? <ChevronUp size={18} style={{ color: 'var(--accent-neon)' }} /> : <ChevronDown size={18} />}
+      </button>
+      
+      {isOpen && (
+        <div style={{
+          padding: '0 24px 20px 24px',
+          color: 'var(--text-secondary)',
+          fontSize: '0.9rem',
+          lineHeight: 1.5,
+          borderTop: '1px solid rgba(255,255,255,0.02)'
+        }}>
+          <p style={{ margin: 0 }}>{answer}</p>
+          {code && <TerminalBlock code={code} />}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Gallery() {
   const [filter, setFilter] = useState('all');
   const [activeItem, setActiveItem] = useState(null);
+
+  const troubleshootingItems = [
+    {
+      question: 'Camera read failure (Device not found at /dev/video0)',
+      answer: 'This occurs if the camera is unplugged or bound by another service. List active USB connections and video devices to confirm path mappings, then configure your launch arguments to target the correct video index.',
+      code: 'lsusb\nls -l /dev/video*'
+    },
+    {
+      question: 'Serial port permission issues (pyserial.serialutil.SerialException)',
+      answer: 'By default, Ubuntu restricts raw access to UART dialout hardware ports. Add your active shell user to the dialout group and reboot the system to apply rules.',
+      code: 'sudo usermod -a -G dialout $USER\nsudo chmod 666 /dev/ttyS0'
+    },
+    {
+      question: 'ROS 2 package not showing up in workspace',
+      answer: 'Confirm that you sourced your workspace after compilation. Run the local setup script from inside your workspace root folder.',
+      code: 'cd /home/pi/ak_ws\nsource install/setup.bash'
+    },
+    {
+      question: 'Motors oscillating / overcorrecting on straight lanes',
+      answer: 'Oscillations mean your STEER_GAIN (Kp) is too high or the STEER_D (Kd) derivative dampening is too low. Try decreasing STEER_GAIN by 0.1 and increasing STEER_D by 0.05 in your launch configuration.',
+      code: 'ros2 launch duckie_bringup bringup.launch.py steer_gain:=0.6 steer_d:=0.35'
+    }
+  ];
 
   const galleryItems = [
     {
@@ -58,7 +195,6 @@ export default function Gallery() {
     },
   ];
 
-  // Close lightbox on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -75,17 +211,44 @@ export default function Gallery() {
 
   return (
     <section id="gallery" style={{ background: '#050505' }}>
+      {/* Part 1: Troubleshooting Accordion */}
+      <div 
+        style={{ 
+          maxWidth: '850px', 
+          margin: '0 auto 80px auto' 
+        }}
+      >
+        <div className="section-header" style={{ marginBottom: '30px' }}>
+          <h2 className="section-title">
+            Troubleshooting <span>Guide</span>
+          </h2>
+          <p className="section-desc">
+            Common issues encountered when deploying the Duckie robot, with corresponding shell diagnostics.
+          </p>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          {troubleshootingItems.map((item, index) => (
+            <AccordionItem 
+              key={index}
+              question={item.question}
+              answer={item.answer}
+              code={item.code}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Part 2: Media Gallery */}
       <div className="section-header">
-        <span className="section-label">// Media</span>
         <h2 className="section-title">
           Project <span>Gallery</span>
         </h2>
         <p className="section-desc">
-          Visual documentation of Dr. Street in development, benchmarking, and autonomous action.
+          Visual documentation of the Duckie bot in development, calibration, and autonomous navigation.
         </p>
       </div>
 
-      {/* Tabs */}
+      {/* Filter Tabs */}
       <div
         style={{
           display: 'flex',
@@ -130,7 +293,7 @@ export default function Gallery() {
         ))}
       </div>
 
-      {/* Grid */}
+      {/* Media Grid */}
       <div
         style={{
           display: 'grid',

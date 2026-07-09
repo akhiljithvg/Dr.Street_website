@@ -88,7 +88,7 @@ export default function Navbar() {
           className="desktop-menu"
         >
           <a
-            href="https://github.com/akhiljithvg/Dr.Street.git"
+            href="https://github.com/akhiljithvg/duckie.git"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary"

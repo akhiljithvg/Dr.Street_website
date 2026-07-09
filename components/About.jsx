@@ -59,25 +59,24 @@ export default function About() {
   }, []);
 
   const chips = [
-    'Autonomous Navigation',
-    'Computer Vision',
-    'SLAM Mapping',
-    'Sensor Fusion',
-    'AI Perception',
-    'Localization',
-    'Real-Time Control',
-    'Modular Design',
+    'Linux Fundamentals',
+    'Python & OpenCV',
+    'ROS 2 Framework',
+    'Embedded Systems',
+    'Control Systems (PD)',
+    'ArUco Marker Processing',
+    'Git Project Workflow',
+    'Real-Time Serial Protocol',
   ];
 
   return (
     <section id="about" style={{ background: '#050505', position: 'relative' }}>
       <div className="section-header">
-        {/* <span className="section-label">// About the Project</span> */}
         <h2 className="section-title">
-          Redefining What <span>Robots</span> Can Do
+          Project <span>Overview</span>
         </h2>
         <p className="section-desc">
-          Dr. Street is a next-generation autonomous robotics platform built to push the boundaries of intelligent navigation, perception, and real-time decision-making.
+          Duckie is a hands-on ROS 2 project designed to teach the fundamentals of computer vision, autonomous navigation, and embedded hardware interfaces.
         </p>
       </div>
 
@@ -86,120 +85,44 @@ export default function About() {
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          gap: '60px',
-          alignItems: 'center',
+          gap: '50px',
+          alignItems: 'start',
           marginTop: '40px',
         }}
       >
-        {/* Visual Animation Box */}
-        <div
-          className="about-visual"
-          style={{
-            position: 'relative',
-            height: '400px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'radial-gradient(circle, rgba(57, 255, 20, 0.03) 0%, transparent 65%)',
-            border: '1px solid rgba(255,255,255,0.02)',
-            borderRadius: '24px',
-            overflow: 'hidden',
-          }}
-        >
-          {/* Parallax Rings */}
-          <div
-            className="about-ring"
-            style={{
-              position: 'absolute',
-              width: '280px',
-              height: '280px',
-              borderRadius: '50%',
-              border: '1px dashed rgba(57, 255, 20, 0.25)',
-              transform: `rotate(0deg) translate(${mouseOffset.x * 0.4}px, ${mouseOffset.y * 0.4}px)`,
-              animation: 'spin 20s linear infinite',
-            }}
-          />
-          <div
-            className="about-ring"
-            style={{
-              position: 'absolute',
-              width: '220px',
-              height: '220px',
-              borderRadius: '50%',
-              border: '2px solid rgba(0, 200, 83, 0.1)',
-              borderTopColor: 'var(--accent-neon)',
-              transform: `rotate(120deg) translate(${mouseOffset.x * 0.7}px, ${mouseOffset.y * 0.7}px)`,
-              animation: 'spin 12s linear infinite reverse',
-            }}
-          />
-          <div
-            className="about-ring"
-            style={{
-              position: 'absolute',
-              width: '160px',
-              height: '160px',
-              borderRadius: '50%',
-              border: '1px dotted rgba(57, 255, 20, 0.3)',
-              transform: `rotate(240deg) translate(${mouseOffset.x * 1.1}px, ${mouseOffset.y * 1.1}px)`,
-              animation: 'spin 8s linear infinite',
-            }}
-          />
-          
-          {/* Animated Core */}
-          <div
-            style={{
-              position: 'relative',
-              width: '80px',
-              height: '80px',
-              borderRadius: '50%',
-              background: 'rgba(5, 5, 5, 0.9)',
-              border: '2px solid var(--accent-neon)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '2.2rem',
-              boxShadow: '0 0 30px rgba(57, 255, 20, 0.3)',
-              zIndex: 5,
-              animation: 'float 3s ease-in-out infinite',
-            }}
-          >
-            🤖
-          </div>
-        </div>
-
-        {/* Text and stats */}
+        {/* Left Side: Overview & Learnings */}
         <div className="about-text">
           <h3
             style={{
-              fontSize: '2rem',
+              fontSize: '1.75rem',
               marginBottom: '20px',
               fontFamily: "'Outfit', sans-serif",
             }}
           >
-            Built for the <span>Future</span> of Autonomy
+            What is <span>Duckie?</span>
           </h3>
           <p
             style={{
               color: 'var(--text-secondary)',
               lineHeight: 1.6,
               marginBottom: '20px',
-              fontSize: '1.05rem',
+              fontSize: '0.98rem',
             }}
           >
-            Dr. Street combines cutting-edge AI perception algorithms with robust mechanical engineering. By fusing depth data with camera streams, it maps environments in real-time, plans dynamic avoidance paths, and localizes with sub-centimeter reliability.
+            The Duckie project is an autonomous mobile robot platform that implements a full closed-loop control system. Using a standard USB camera feed, it extracts red lane markings with OpenCV color-mask filters, scans for ArUco markers to make turn selections at junctions, and transmits parsed speed commands over serial UART to an ESP32 microcontroller driving a dual H-bridge motor controller.
           </p>
           <p
             style={{
               color: 'var(--text-secondary)',
               lineHeight: 1.6,
               marginBottom: '30px',
-              fontSize: '1.05rem',
+              fontSize: '0.98rem',
             }}
           >
-            Designed modularly from the ground up, the platform handles core pipeline processing entirely onboard, making it an excellent development platform for advanced autonomy.
+            By working through this codebase, developers learn two key robotics approaches: a direct **Standalone Python script** for rapid prototyping, and a modular **ROS 2 architecture** for professional production-grade design.
           </p>
 
-          {/* Chips */}
+          <h4 style={{ fontSize: '1.1rem', marginBottom: '15px', color: '#fff', fontWeight: 600 }}>What You'll Learn</h4>
           <div
             style={{
               display: 'flex',
@@ -250,33 +173,33 @@ export default function About() {
             <div>
               <div
                 style={{
-                  fontSize: '2.5rem',
+                  fontSize: '2.2rem',
                   fontWeight: 800,
                   color: 'var(--accent-neon)',
                   fontFamily: "'Outfit', sans-serif",
                 }}
               >
-                <Counter target={12} />
+                <Counter target={5} />
               </div>
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Core Features</span>
+              <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>ROS 2 Packages</span>
             </div>
             <div>
               <div
                 style={{
-                  fontSize: '2.5rem',
+                  fontSize: '2.2rem',
                   fontWeight: 800,
                   color: 'var(--accent-neon)',
                   fontFamily: "'Outfit', sans-serif",
                 }}
               >
-                <Counter target={8} />
+                <Counter target={2} />
               </div>
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Onboard Sensors</span>
+              <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>Control Architectures</span>
             </div>
             <div>
               <div
                 style={{
-                  fontSize: '2.5rem',
+                  fontSize: '2.2rem',
                   fontWeight: 800,
                   color: 'var(--accent-neon)',
                   fontFamily: "'Outfit', sans-serif",
@@ -284,7 +207,112 @@ export default function About() {
               >
                 <Counter target={100} suffix="%" />
               </div>
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Open Source</span>
+              <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>Open Source</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side: Prerequisites & Hardware Animation */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+          {/* Prerequisites Box */}
+          <div
+            className="glassmorphism subtle-border"
+            style={{
+              padding: '35px',
+              borderRadius: '24px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '24px',
+            }}
+          >
+            <h3 style={{ fontSize: '1.4rem', color: '#fff', fontWeight: 600, borderBottom: '1px solid rgba(255, 255, 255, 0.06)', paddingBottom: '12px' }}>
+              🔧 Prerequisites & Requirements
+            </h3>
+
+            {/* Hardware reqs */}
+            <div>
+              <h5 style={{ color: 'var(--accent-emerald)', fontWeight: 600, fontSize: '0.88rem', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.05em' }}>
+                Hardware Requirements
+              </h5>
+              <ul style={{ paddingLeft: '20px', color: 'var(--text-secondary)', fontSize: '0.88rem', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <li><strong>Processor</strong>: Raspberry Pi 4 (4GB/8GB LPDDR4 recommended)</li>
+                <li><strong>Visual Input</strong>: USB webcam (standard Linux V4L2 compatible)</li>
+                <li><strong>Controller</strong>: ESP32 development board (UART co-processor)</li>
+                <li><strong>Mechanical</strong>: Dual motor driver chip (L298N/L293D) & DC geared motors</li>
+                <li><strong>Power</strong>: Dual isolated rails (Pi power bank + motor battery pack)</li>
+              </ul>
+            </div>
+
+            {/* Software reqs */}
+            <div>
+              <h5 style={{ color: 'var(--accent-emerald)', fontWeight: 600, fontSize: '0.88rem', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.05em' }}>
+                Software Requirements
+              </h5>
+              <ul style={{ paddingLeft: '20px', color: 'var(--text-secondary)', fontSize: '0.88rem', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <li><strong>Operating System</strong>: Ubuntu Server 24.04 LTS (Noble Numbat)</li>
+                <li><strong>SDK Framework</strong>: ROS 2 Jazzy Jalisco (desktop or base installation)</li>
+                <li><strong>Languages</strong>: Python 3.10+ and C++17 (Arduino CLI support)</li>
+                <li><strong>Libraries</strong>: OpenCV Python (`cv2`), `numpy`, and `pyserial`</li>
+              </ul>
+            </div>
+
+            {/* Network reqs */}
+            <div>
+              <h5 style={{ color: 'var(--accent-emerald)', fontWeight: 600, fontSize: '0.88rem', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.05em' }}>
+                Network Requirements
+              </h5>
+              <ul style={{ paddingLeft: '20px', color: 'var(--text-secondary)', fontSize: '0.88rem', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <li>Internet access for system provisioning and ROS package installs</li>
+                <li>SSH credentials configured on the Pi for remote terminal scripting</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Mini Visual Core */}
+          <div
+            className="about-visual"
+            style={{
+              position: 'relative',
+              height: '180px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'radial-gradient(circle, rgba(57, 255, 20, 0.02) 0%, transparent 65%)',
+              border: '1px solid rgba(255,255,255,0.01)',
+              borderRadius: '24px',
+              overflow: 'hidden',
+            }}
+          >
+            <div
+              className="about-ring"
+              style={{
+                position: 'absolute',
+                width: '120px',
+                height: '120px',
+                borderRadius: '50%',
+                border: '1px dashed rgba(57, 255, 20, 0.15)',
+                transform: `rotate(0deg) translate(${mouseOffset.x * 0.4}px, ${mouseOffset.y * 0.4}px)`,
+                animation: 'spin 20s linear infinite',
+              }}
+            />
+            <div
+              style={{
+                position: 'relative',
+                width: '50px',
+                height: '50px',
+                borderRadius: '50%',
+                background: 'rgba(5, 5, 5, 0.9)',
+                border: '2px solid var(--accent-neon)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1.4rem',
+                boxShadow: '0 0 20px rgba(57, 255, 20, 0.2)',
+                zIndex: 5,
+                animation: 'float 3s ease-in-out infinite',
+              }}
+            >
+              🦆
             </div>
           </div>
         </div>

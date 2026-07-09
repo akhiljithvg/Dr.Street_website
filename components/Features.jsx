@@ -1,196 +1,175 @@
 'use client';
 
-import {
-  Navigation,
-  Eye,
-  Shield,
-  Milestone,
-  Map,
-  MapPin,
-  GitMerge,
-  Cpu,
-  Video,
-  LineChart,
-  Gamepad2,
-  Grid,
-} from 'lucide-react';
+import { useState } from 'react';
+import { Clipboard, Check, Terminal, Cpu } from 'lucide-react';
+
+function TerminalBlock({ code }) {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div 
+      style={{
+        background: '#060606',
+        borderRadius: '10px',
+        border: '1px solid rgba(255,255,255,0.06)',
+        overflow: 'hidden',
+        marginTop: '12px',
+        fontFamily: "'Courier New', Courier, monospace",
+        position: 'relative'
+      }}
+    >
+      <div 
+        style={{
+          background: '#0d0d0d',
+          padding: '8px 16px',
+          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          fontSize: '0.72rem',
+          color: '#666',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}
+      >
+        <span>bash</span>
+        <button 
+          onClick={handleCopy}
+          style={{
+            background: 'transparent',
+            border: 'none',
+            color: copied ? 'var(--accent-neon)' : '#666',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            fontSize: '0.72rem',
+            transition: 'color 0.2s'
+          }}
+        >
+          {copied ? <Check size={12} /> : <Clipboard size={12} />}
+          {copied ? 'Copied!' : 'Copy'}
+        </button>
+      </div>
+      <pre 
+        style={{
+          padding: '16px',
+          margin: 0,
+          overflowX: 'auto',
+          fontSize: '0.82rem',
+          color: '#a0a0a0',
+          lineHeight: 1.45
+        }}
+      ><code>{code}</code></pre>
+    </div>
+  );
+}
 
 export default function Features() {
-  const featuresList = [
+  const steps = [
     {
-      icon: <Navigation size={28} />,
-      title: 'Autonomous Navigation',
-      desc: 'Multi-layered path planning with dynamic obstacle avoidance and intelligent route optimization across complex environments.',
-      tag: '→ Core System',
+      num: '1.1',
+      title: 'Initial System Update',
+      desc: 'Connect to the Pi via SSH or local console and update the package list and system binaries to ensure safety and dependency compatibility.',
+      code: 'sudo apt update && sudo apt upgrade -y'
     },
     {
-      icon: <Eye size={28} />,
-      title: 'Computer Vision',
-      desc: 'Real-time image processing and deep learning-based visual understanding using onboard camera systems and neural inference.',
-      tag: '→ AI Vision',
+      num: '1.2',
+      title: 'Install Essential Development Tools',
+      desc: 'Install the base compilers, Cmake toolchain, Git, curl/wget, and text editors required to compile ROS packages and edit configurations.',
+      code: 'sudo apt install -y build-essential cmake git wget curl python3 python3-pip python3-dev vim nano'
     },
     {
-      icon: <Shield size={28} />,
-      title: 'Obstacle Detection',
-      desc: 'Multi-sensor fusion combining ultrasonic, camera, and IMU data for 360° situational awareness and collision prevention.',
-      tag: '→ Safety Layer',
+      num: '1.3',
+      title: 'Install Python Core Dependencies',
+      desc: 'Upgrade python pip manager and install core libraries required for lane detection algorithms (OpenCV), math matrices (NumPy), and ESP32 board communication.',
+      code: 'python3 -m pip install --upgrade pip\npython3 -m pip install --user opencv-python numpy pyserial'
     },
     {
-      icon: <Milestone size={28} />,
-      title: 'Lane Following',
-      desc: 'Precision edge detection and line-tracking algorithms enabling the robot to follow defined paths with sub-centimeter accuracy.',
-      tag: '→ Navigation',
+      num: '1.4',
+      title: 'Verify System Configuration',
+      desc: 'Check compiled versions of primary tools to confirm that path routing and dependency setup is correct.',
+      code: 'python3 --version\npip3 --version\ngit --version\ngcc --version'
     },
     {
-      icon: <Map size={28} />,
-      title: 'SLAM Mapping',
-      desc: 'Simultaneous Localization and Mapping builds real-time 2D/3D environment maps for autonomous spatial understanding.',
-      tag: '→ Spatial AI',
-    },
-    {
-      icon: <MapPin size={28} />,
-      title: 'Localization',
-      desc: 'High-precision self-localization within mapped environments using probabilistic algorithms and sensor odometry.',
-      tag: '→ Positioning',
-    },
-    {
-      icon: <GitMerge size={28} />,
-      title: 'Sensor Fusion',
-      desc: 'Kalman-filter-based integration of multiple sensor streams for a coherent, high-confidence environmental model.',
-      tag: '→ Data Layer',
-    },
-    {
-      icon: <Cpu size={28} />,
-      title: 'AI Decision Engine',
-      desc: 'Onboard neural processing powers autonomous behavioral planning, context-aware decision-making, and adaptive responses.',
-      tag: '→ Intelligence',
-    },
-    {
-      icon: <Video size={28} />,
-      title: 'Camera Streaming',
-      desc: 'Live HD video streaming over Wi-Fi enables real-time monitoring of the robot\'s perspective from any connected device.',
-      tag: '→ Telemetry',
-    },
-    {
-      icon: <LineChart size={28} />,
-      title: 'Remote Monitoring',
-      desc: 'Full telemetry dashboard showing battery status, sensor readings, velocity, heading, and system health in real-time.',
-      tag: '→ Monitoring',
-    },
-    {
-      icon: <Gamepad2 size={28} />,
-      title: 'Real-Time Control',
-      desc: 'Low-latency wireless control interface for manual override, parameter tuning, and hybrid autonomous-manual operation.',
-      tag: '→ Control',
-    },
-    {
-      icon: <Grid size={28} />,
-      title: 'Modular Architecture',
-      desc: 'Plug-and-play subsystems allow easy hardware upgrades, software modules, and capability expansion without full redesign.',
-      tag: '→ Platform',
-    },
+      num: '1.5',
+      title: 'Configure Git Credentials',
+      desc: 'Configure Git version control credentials on the robot local server so you can commit and push project branches directly from the workspace.',
+      code: 'git config --global user.name "Your Name"\ngit config --global user.email "your.email@university.edu"'
+    }
   ];
 
   return (
-    <section id="features" style={{ background: '#090909' }}>
+    <section id="ubuntu-setup" style={{ background: '#090909' }}>
       <div className="section-header">
-        {/* <span className="section-label">// Capabilities</span> */}
         <h2 className="section-title">
-          Engineered <span>Features</span>
+          Ubuntu Server <span>Setup</span>
         </h2>
         <p className="section-desc">
-          Every capability is precision-engineered for real-world autonomous operation.
+          Step-by-step instructions for provisioning a fresh Ubuntu 24.04 LTS installation on the robot's primary compute system.
         </p>
       </div>
 
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: '24px',
-          marginTop: '20px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '30px',
+          marginTop: '30px',
+          maxWidth: '850px',
+          margin: '30px auto 0 auto'
         }}
       >
-        {featuresList.map((f, i) => (
-          <div
-            key={i}
-            className="feature-card subtle-border"
+        {steps.map((s, idx) => (
+          <div 
+            key={idx}
+            className="setup-card glassmorphism subtle-border"
             style={{
-              background: 'rgba(14, 14, 14, 0.55)',
-              backdropFilter: 'blur(10px)',
-              WebkitBackdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255, 255, 255, 0.03)',
+              padding: '28px',
               borderRadius: '20px',
-              padding: '30px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '16px',
-              transition: 'all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)',
-              position: 'relative',
-              overflow: 'hidden',
+              gap: '12px',
+              transition: 'border-color 0.3s'
             }}
           >
-            {/* Hover visual light strip */}
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '2px',
-                background: 'linear-gradient(90deg, transparent, var(--accent-neon), transparent)',
-                transform: 'translateX(-100%)',
-                transition: 'transform 0.6s ease',
-              }}
-              className="glow-bar"
-            />
-
-            {/* Icon */}
-            <div
-              style={{
-                width: '56px',
-                height: '56px',
-                borderRadius: '12px',
-                background: 'rgba(57, 255, 20, 0.05)',
-                border: '1px solid rgba(57, 255, 20, 0.15)',
-                color: 'var(--accent-neon)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 0 15px rgba(57, 255, 20, 0.03)',
-                transition: 'all 0.3s',
-              }}
-              className="feature-icon-box"
-            >
-              {f.icon}
+            {/* Header row */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span 
+                style={{ 
+                  fontFamily: "'Outfit', sans-serif",
+                  fontSize: '0.78rem',
+                  color: 'var(--accent-neon)',
+                  fontWeight: 800,
+                  letterSpacing: '0.05em',
+                  background: 'rgba(57, 255, 20, 0.05)',
+                  padding: '4px 10px',
+                  borderRadius: '4px',
+                  border: '1px solid rgba(57, 255, 20, 0.15)'
+                }}
+              >
+                PART {s.num}
+              </span>
+              <h3 style={{ fontSize: '1.15rem', color: '#fff', fontWeight: 600 }}>{s.title}</h3>
             </div>
 
-            {/* Content */}
-            <h3 style={{ fontSize: '1.25rem', color: '#fff', fontWeight: 600 }}>{f.title}</h3>
-            <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.5, flexGrow: 1 }}>
-              {f.desc}
+            {/* Description */}
+            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+              {s.desc}
             </p>
-            <span style={{ fontSize: '0.8rem', color: 'var(--accent-neon)', fontWeight: 600, letterSpacing: '0.05em' }}>
-              {f.tag}
-            </span>
+
+            {/* Terminal execution block */}
+            <TerminalBlock code={s.code} />
           </div>
         ))}
       </div>
 
       <style jsx global>{`
-        .feature-card:hover {
-          transform: translateY(-5px);
-          background: rgba(20, 20, 20, 0.7) !important;
+        .setup-card:hover {
           border-color: var(--accent-neon) !important;
-          box-shadow: 0 15px 30px rgba(57, 255, 20, 0.08), inset 0 0 15px rgba(57, 255, 20, 0.02) !important;
-        }
-        .feature-card:hover .glow-bar {
-          transform: translateX(100%);
-        }
-        .feature-card:hover .feature-icon-box {
-          background: var(--accent-neon);
-          color: #000;
-          box-shadow: 0 0 20px rgba(57, 255, 20, 0.35);
         }
       `}</style>
     </section>

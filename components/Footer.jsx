@@ -14,17 +14,17 @@ export default function Footer() {
         <Logo scale={0.8} />
       </div>
       <p style={{ color: 'var(--text-secondary)', marginBottom: '30px' }}>
-        Intelligent Autonomous Robotics Platform. Built for the future.
+        Hands-on ROS 2 Autonomous Robotics Project.
       </p>
       <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-        <a href="https://github.com/akhiljithvg/Dr.Street.git" target="_blank" rel="noreferrer" style={{
+        <a href="https://github.com/akhiljithvg/duckie.git" target="_blank" rel="noreferrer" style={{
           color: 'var(--text-primary)', textDecoration: 'none', transition: 'color 0.3s'
         }} onMouseEnter={(e) => e.target.style.color = 'var(--accent-neon)'} onMouseLeave={(e) => e.target.style.color = 'var(--text-primary)'}>
           GitHub Repository
         </a>
       </div>
       <p style={{ marginTop: '40px', fontSize: '0.8rem', color: '#555' }}>
-        © {new Date().getFullYear()} Dr. Street Robotics Project. All rights reserved.
+        © {new Date().getFullYear()} Duckie Robotics Project. All rights reserved.
       </p>
     </footer>
   );

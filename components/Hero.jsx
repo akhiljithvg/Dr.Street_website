@@ -110,7 +110,7 @@ export default function Hero() {
             backdropFilter: 'blur(10px)',
           }}
         >
-          Autonomous Robotics Platform
+          ROS 2 Autonomous Robot
         </div>
 
         {/* Main Logo */}
@@ -129,8 +129,7 @@ export default function Hero() {
             fontWeight: 400,
           }}
         >
-          An intelligent autonomous robotics platform designed for navigation, computer vision,
-          AI perception, autonomous decision-making, and real-time robotic interaction.
+          A complete, hands-on ROS 2 robotics project for learning autonomous navigation, computer vision, and embedded systems. Designed for step-by-step learning.
         </p>
 
         {/* Buttons */}
@@ -143,10 +142,10 @@ export default function Hero() {
           }}
         >
           <a href="#about" onClick={handleExploreClick} className="btn-primary">
-            Explore Project <ArrowRight size={18} />
+            Explore Documentation <ArrowRight size={18} />
           </a>
           <a
-            href="https://github.com/akhiljithvg/Dr.Street.git"
+            href="https://github.com/akhiljithvg/duckie.git"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary"

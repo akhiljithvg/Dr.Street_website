@@ -42,7 +42,7 @@ export default function Logo({ scale = 1 }) {
           lineHeight: 1,
           margin: 0,
         }}>
-          DR. STREET
+          DUCKIE
         </h1>
         <span style={{
           fontFamily: "'Inter', sans-serif",
