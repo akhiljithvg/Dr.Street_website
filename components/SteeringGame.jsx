@@ -162,11 +162,8 @@ export default function SteeringGame() {
     // lateral: centrifugal + steer
     pX.current -= seg.curve * 0.4 * (speed.current / MAX_SPEED) * dt;
     pX.current += steer.current * 0.025 * (speed.current / MAX_SPEED + 0.2) * 60 * dt;
-    pX.current  = Math.max(-1.6, Math.min(1.6, pX.current));
-
-    // off-road slowdown
-    if (Math.abs(pX.current) > 1.0)
-      speed.current = Math.max(speed.current - 20 * dt, 2);
+    // Clamp player strictly inside the road track (ROAD_HALF is 1.0)
+    pX.current  = Math.max(-0.85, Math.min(0.85, pX.current));
 
     // score
     score.current += speed.current * dt * 0.5;
@@ -251,7 +248,7 @@ export default function SteeringGame() {
       const proj = project(W, H, hY, dz, camOffX, camOffY);
       if (!proj || proj.sy > H) { segs.push(null); continue; } // below screen
 
-      segs.push({ segI, t, dz, proj, n });
+      segs.push({ segI, t, dz, proj, n, camOffX, camOffY });
 
       // Accumulate curve and hill offsets for next segment
       curve    = curve * 0.97 + t.curve * 0.03;
@@ -321,8 +318,8 @@ export default function SteeringGame() {
         // Skip if behind player
         if (relZ <= 0) continue;
 
-        // Project obstacle position using same perspective
-        const obsProj = project(W, H, hY, relZ, -pX.current + obs.lane, 0);
+        // Project obstacle position using segment's curved perspective
+        const obsProj = project(W, H, hY, relZ, s.camOffX + obs.lane, s.camOffY);
         if (!obsProj || obsProj.sy > H + 5 || obsProj.sy < hY) continue;
 
         drawObstacle(ctx, obsProj.sx, obsProj.sy, obsProj.sw * 0.22, performance.now());
@@ -335,42 +332,70 @@ export default function SteeringGame() {
 
   // ── Obstacle rendering ─────────────────────────────────────────────────────
   const drawObstacle = (ctx, cx, cy, hw, now) => {
-    const hh  = hw * 1.6;   // half-height
-    const t   = now / 600;
-    const g   = 0.55 + 0.45 * Math.sin(t); // glow pulse
-
-    // Dark body
-    ctx.fillStyle = '#001a00';
-    ctx.fillRect(cx - hw, cy - hh * 2, hw * 2, hh * 2);
-
-    // Bright top face (lit)
-    ctx.fillStyle = `rgba(0,255,68,${0.18 * g})`;
-    ctx.fillRect(cx - hw, cy - hh * 2, hw * 2, hh * 0.3);
-
-    // Neon outer glow
-    ctx.save();
-    ctx.shadowColor = '#00ff44';
-    ctx.shadowBlur  = 14 * g;
-    ctx.strokeStyle = `rgba(0,255,68,${0.7 + 0.3 * g})`;
-    ctx.lineWidth   = Math.max(1.5, hw * 0.08);
-    ctx.strokeRect(cx - hw, cy - hh * 2, hw * 2, hh * 2);
-    ctx.restore();
-
-    // Horizontal neon bands on the body
-    const bands = 3;
-    for (let b = 0; b < bands; b++) {
-      const by = cy - hh * 2 + (hh * 2) * ((b + 1) / (bands + 1));
-      ctx.strokeStyle = `rgba(0,255,68,${0.25 * g})`;
-      ctx.lineWidth   = Math.max(1, hw * 0.04);
-      ctx.beginPath();
-      ctx.moveTo(cx - hw, by); ctx.lineTo(cx + hw, by); ctx.stroke();
-    }
+    const hh   = hw * 0.85;   // car is wider and lower (chassis height)
+    const cabW = hw * 0.7;    // cabin width
+    const cabH = hh * 0.9;    // cabin height
+    const t    = now / 600;
+    const g    = 0.5 + 0.5 * Math.sin(t); // glow pulse
 
     // Ground shadow
-    ctx.fillStyle = `rgba(0,255,68,0.08)`;
+    ctx.fillStyle = `rgba(0,255,68,0.15)`;
     ctx.beginPath();
     ctx.ellipse(cx, cy, hw * 1.3, hw * 0.25, 0, 0, Math.PI * 2);
     ctx.fill();
+
+    // Car Body (Chassis) - filled
+    ctx.fillStyle = '#001a00';
+    ctx.fillRect(cx - hw, cy - hh, hw * 2, hh);
+
+    // Car Cabin (Top part) - filled
+    ctx.fillStyle = '#010c01';
+    ctx.beginPath();
+    ctx.moveTo(cx - hw, cy - hh);
+    ctx.lineTo(cx - cabW, cy - hh - cabH);
+    ctx.lineTo(cx + cabW, cy - hh - cabH);
+    ctx.lineTo(cx + hw, cy - hh);
+    ctx.fill();
+
+    // Neon green wireframe outlines
+    ctx.save();
+    ctx.shadowColor = '#00ff44';
+    ctx.shadowBlur  = 12 * g;
+    ctx.strokeStyle = `rgba(0,255,68,${0.6 + 0.4 * g})`;
+    ctx.lineWidth   = Math.max(1.5, hw * 0.08);
+
+    // Chassis outline
+    ctx.strokeRect(cx - hw, cy - hh, hw * 2, hh);
+
+    // Cabin outline
+    ctx.beginPath();
+    ctx.moveTo(cx - hw, cy - hh);
+    ctx.lineTo(cx - cabW, cy - hh - cabH);
+    ctx.lineTo(cx + cabW, cy - hh - cabH);
+    ctx.lineTo(cx + hw, cy - hh);
+    ctx.stroke();
+
+    // Rear window
+    ctx.fillStyle = 'rgba(0,255,68,0.06)';
+    ctx.beginPath();
+    ctx.moveTo(cx - cabW * 0.8, cy - hh - cabH * 0.15);
+    ctx.lineTo(cx - cabW * 0.6, cy - hh - cabH * 0.85);
+    ctx.lineTo(cx + cabW * 0.6, cy - hh - cabH * 0.85);
+    ctx.lineTo(cx + cabW * 0.8, cy - hh - cabH * 0.15);
+    ctx.fill();
+    ctx.stroke();
+
+    // Tail lights (red for danger!)
+    ctx.shadowColor = '#ff0044';
+    ctx.fillStyle   = '#ff0044';
+    ctx.shadowBlur  = 15 + 5 * Math.sin(t * 3);
+    const tailW = hw * 0.35;
+    const tailH = hh * 0.35;
+    const tailY = cy - hh * 0.65;
+    ctx.fillRect(cx - hw * 0.85, tailY, tailW, tailH);
+    ctx.fillRect(cx + hw * 0.85 - tailW, tailY, tailW, tailH);
+
+    ctx.restore();
   };
 
   // ── Cockpit overlay ────────────────────────────────────────────────────────
