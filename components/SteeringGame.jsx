@@ -7,7 +7,7 @@ const TRACK_LEN    = 200;     // number of segments
 const SEG_LEN      = 40;      // world units per segment (short = fast-feeling)
 const ROAD_HALF    = 1.0;     // half-road width in world units (player X clamped to ±1)
 const CAM_H        = 0.45;    // camera height in world units
-const CAM_D        = 1.2;     // camera depth (FOV control)
+const CAM_D        = 0.95;    // camera depth (FOV control - lower is wider/less zoomed)
 const DRAW_DIST    = 180;     // segments to draw
 const HORIZON_Y    = 0.42;    // horizon as fraction of canvas height
 const MAX_SPEED    = 700;     // world units per second
@@ -171,15 +171,37 @@ export default function SteeringGame() {
     if (speedEl.current) speedEl.current.style.width = `${(speed.current / MAX_SPEED) * 100}%`;
 
     // ── collision ──────────────────────────────────────────────────────────
+    const canvas = canvasRef.current;
+    const H = canvas ? canvas.height : 420;
+    const W = canvas ? canvas.width : 400;
+    const hY = Math.floor(H * HORIZON_Y);
+    
+    // Calculate exact visual center of the steering wheel
+    const dashY = H * 0.68;
+    const dashH = H - dashY;
+    const wheelCenter = dashY + dashH * 0.52;
+
     for (const obs of obstacles.current) {
       if (obs.hit) continue;
       // relZ: how far AHEAD the obstacle is from the player
       let relZ = obs.wz - pos.current;
       if (relZ < 0) relZ += totalLen; // wrap
-      // only check if within 2 segments ahead
-      if (relZ < SEG_LEN * 2.5 && relZ > 0) {
-        const dx = Math.abs(pX.current - obs.lane);
-        if (dx < 0.32) {
+      
+      // Predict exact visual screen Y of the obstacle base
+      const scale = CAM_D * H / Math.max(relZ, 1);
+      const sy = hY + CAM_H * scale * H * 0.5;
+
+      // Predict exact visual screen Y of the red tail lights
+      const hw = scale * W * 0.0616;
+      const hh = hw * 0.85;
+      const tailY = sy - hh * 0.65;
+
+      // Crash triggers precisely when the tail light touches the steering wheel center
+      if (tailY > wheelCenter && tailY < wheelCenter + Math.max(100, hh * 3)) {
+        // Player X is -1..1, obstacle lane is -0.55, 0, 0.55
+        // Tighter hitbox for fair overtaking
+        const diffX = Math.abs(pX.current - obs.lane);
+        if (diffX < 0.42) {
           obs.hit = true;
           doGameOver();
           return;
