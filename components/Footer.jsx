@@ -15,7 +15,7 @@ export default function Footer() {
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-        <a href="https://github.com/akhiljithvg/Dr.Street.git" target="_blank" rel="noreferrer" style={{
+        <a href="https://github.com/akhiljithvg/Dr.Street_website.git" target="_blank" rel="noreferrer" style={{
           color: 'var(--text-primary)', textDecoration: 'none', transition: 'color 0.3s'
         }} onMouseEnter={(e) => e.target.style.color = 'var(--accent-neon)'} onMouseLeave={(e) => e.target.style.color = 'var(--text-primary)'}>
           GitHub Repository
