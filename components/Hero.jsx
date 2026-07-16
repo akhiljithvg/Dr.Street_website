@@ -87,7 +87,7 @@ export default function Hero() {
           }}
         >
           <a
-            href="https://github.com/akhiljithvg/Dr.Street_website.git"
+            href="https://github.com/akhiljithvg/Dr.street.git"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary"
