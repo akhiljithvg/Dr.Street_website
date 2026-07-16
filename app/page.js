@@ -1,13 +1,19 @@
 'use client';
-import ThreeBackground from "@/components/ThreeBackground";
+import dynamic from 'next/dynamic';
 import Logo from "@/components/Logo";
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
+const ThreeDemo = dynamic(() => import('@/components/3'), {
+  ssr: false,
+});
+
 export default function Home() {
   return (
     <main style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <ThreeBackground />
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
+        <ThreeDemo />
+      </div>
       
       <div 
         style={{ 
@@ -39,7 +45,7 @@ export default function Home() {
 
         <Link href="/docs/intro" style={{ textDecoration: 'none' }}>
           <button className="btn-primary" style={{ padding: '16px 32px', fontSize: '1.1rem' }}>
-            Enter Documentation <ArrowRight size={20} />
+            Let's Get Started <ArrowRight size={20} />
           </button>
         </Link>
       </div>
