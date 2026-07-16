@@ -4,7 +4,6 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 export default function ThreeDemo() {
   const canvasRef = useRef(null);
@@ -95,64 +94,6 @@ export default function ThreeDemo() {
       helper.visible = false;
     }
 
-    const gui = new GUI();
-    gui.close();
-
-    class VisibleGUIHelper {
-      constructor(...objects) {
-        this.objects = [...objects];
-      }
-      get value() {
-        return this.objects[0].visible;
-      }
-      set value(v) {
-        this.objects.forEach((obj) => {
-          obj.visible = v;
-        });
-      }
-    }
-
-    gui.add(new VisibleGUIHelper(helper, cameraHelper), 'value').name('show helpers');
-    gui.add(dirLight.shadow, 'bias', -0.1, 0.1, 0.001);
-
-    class DimensionGUIHelper {
-      constructor(obj, minProp, maxProp) {
-        this.obj = obj;
-        this.minProp = minProp;
-        this.maxProp = maxProp;
-      }
-      get value() {
-        return this.obj[this.maxProp] * 2;
-      }
-      set value(v) {
-        this.obj[this.maxProp] = v / 2;
-        this.obj[this.minProp] = v / -2;
-      }
-    }
-
-    class MinMaxGUIHelper {
-      constructor(obj, minProp, maxProp, minDif) {
-        this.obj = obj;
-        this.minProp = minProp;
-        this.maxProp = maxProp;
-        this.minDif = minDif;
-      }
-      get min() {
-        return this.obj[this.minProp];
-      }
-      set min(v) {
-        this.obj[this.minProp] = v;
-        this.obj[this.maxProp] = Math.max(this.obj[this.maxProp], v + this.minDif);
-      }
-      get max() {
-        return this.obj[this.maxProp];
-      }
-      set max(v) {
-        this.obj[this.maxProp] = v;
-        this.min = this.min;
-      }
-    }
-
     function updateCamera() {
       dirLight.updateMatrixWorld();
       dirLight.target.updateMatrixWorld();
@@ -160,32 +101,6 @@ export default function ThreeDemo() {
       dirLight.shadow.camera.updateProjectionMatrix();
       cameraHelper.update();
     }
-
-    {
-      const folder = gui.addFolder('Shadow Camera');
-      folder.open();
-      folder.add(new DimensionGUIHelper(dirLight.shadow.camera, 'left', 'right'), 'value', 1, 4000)
-        .name('width')
-        .onChange(updateCamera);
-      folder.add(new DimensionGUIHelper(dirLight.shadow.camera, 'bottom', 'top'), 'value', 1, 4000)
-        .name('height')
-        .onChange(updateCamera);
-      const minMaxGUIHelper = new MinMaxGUIHelper(dirLight.shadow.camera, 'near', 'far', 0.1);
-      folder.add(minMaxGUIHelper, 'min', 1, 1000, 1).name('near').onChange(updateCamera);
-      folder.add(minMaxGUIHelper, 'max', 1, 4000, 1).name('far').onChange(updateCamera);
-      folder.add(dirLight.shadow.camera, 'zoom', 0.01, 1.5, 0.01).onChange(updateCamera);
-    }
-
-    function makeXYZGUI(gui, vector3, name, onChangeFn) {
-      const folder = gui.addFolder(name);
-      folder.add(vector3, 'x', vector3.x - 500, vector3.x + 500).onChange(onChangeFn);
-      folder.add(vector3, 'y', vector3.y - 500, vector3.y + 500).onChange(onChangeFn);
-      folder.add(vector3, 'z', vector3.z - 500, vector3.z + 500).onChange(onChangeFn);
-      folder.open();
-    }
-
-    makeXYZGUI(gui, dirLight.position, 'position', updateCamera);
-    makeXYZGUI(gui, dirLight.target.position, 'target', updateCamera);
 
     function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
       const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
@@ -378,7 +293,6 @@ export default function ThreeDemo() {
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
       cancelAnimationFrame(animId);
-      gui.destroy();
       renderer.dispose();
     };
   }, []);
