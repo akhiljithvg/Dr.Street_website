@@ -22,7 +22,7 @@ export default function Footer() {
         </a>
       </div>
       <p style={{ marginTop: '40px', fontSize: '0.8rem', color: '#555' }}>
-        © {new Date().getFullYear()} Dr.Street Robotics Project. All rights reserved.
+        © {new Date().getFullYear()} Dr.Street. All rights reserved.
       </p>
     </footer>
   );
