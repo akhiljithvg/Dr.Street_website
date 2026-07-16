@@ -109,6 +109,7 @@ export default function Architecture() {
                   width: '100%',
                   position: 'relative',
                   zIndex: 3,
+                  minWidth: 0
                 }}
                 className={`arch-step-row ${isLeft ? 'left-row' : 'right-row'}`}
               >
@@ -118,6 +119,7 @@ export default function Architecture() {
                     style={{
                       width: '43%',
                       textAlign: 'right',
+                      minWidth: 0
                     }}
                     className="arch-card-wrap"
                   >
@@ -165,6 +167,7 @@ export default function Architecture() {
                     style={{
                       width: '43%',
                       textAlign: 'left',
+                      minWidth: 0
                     }}
                     className="arch-card-wrap"
                   >
@@ -227,40 +230,6 @@ export default function Architecture() {
         </div>
       </div>
 
-      <style jsx global>{`
-        @keyframes pulseMove {
-          0% { top: 0px; opacity: 0; }
-          5% { opacity: 1; }
-          95% { opacity: 1; }
-          100% { top: 100%; opacity: 0; }
-        }
-
-        @media (max-width: 768px) {
-          .arch-back-line {
-            left: 28px !important;
-            transform: none !important;
-          }
-          .arch-glow-pulse {
-            left: 28px !important;
-            transform: none !important;
-          }
-          .arch-step-row {
-            flex-direction: row-reverse !important;
-            justify-content: flex-end !important;
-            gap: 20px !important;
-          }
-          .arch-card-wrap {
-            width: calc(100% - 80px) !important;
-            text-align: left !important;
-          }
-          .arch-card-wrap > div {
-            display: block !important;
-          }
-          .arch-empty-space {
-            display: none !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

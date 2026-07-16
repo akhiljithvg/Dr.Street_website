@@ -78,6 +78,7 @@ export default function Hero() {
 
         {/* Buttons */}
         <div
+          className="hero-buttons"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -114,22 +115,7 @@ export default function Hero() {
 
 
 
-      {/* Scrolldown keyframes and responsiveness */}
-      <style jsx>{`
-        @keyframes scrollDown {
-          0% { transform: translateY(-100%); }
-          80% { transform: translateY(350%); }
-          100% { transform: translateY(350%); }
-        }
-        @media (max-width: 1024px) {
-          .hero-robot-wrapper {
-            display: none !important;
-          }
-          h1 {
-            font-size: 3.8rem !important;
-          }
-        }
-      `}</style>
+
     </section>
   );
 }

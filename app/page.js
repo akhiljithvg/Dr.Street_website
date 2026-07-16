@@ -24,7 +24,7 @@ export default function Home() {
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
-          padding: '40px 48px',
+          padding: 'clamp(24px, 6vw, 40px) clamp(20px, 8vw, 48px)',
           maxWidth: '560px',
           width: '90%'
         }}

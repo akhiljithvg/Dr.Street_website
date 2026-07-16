@@ -28,7 +28,8 @@ function TerminalBlock({ code }) {
       overflow: 'hidden',
       marginTop: '10px',
       fontFamily: "'Courier New', Courier, monospace",
-      position: 'relative'
+      position: 'relative',
+      minWidth: 0
     }}>
       <div style={{
         background: '#0d0d0d',
@@ -153,46 +154,14 @@ export default function Software() {
             <div
               key={idx}
               className="sw-step-container"
-              style={{
-                display: 'flex',
-                gap: '30px',
-                position: 'relative',
-                zIndex: 3,
-              }}
             >
               {/* Stepper Dot */}
-              <div
-                style={{
-                  width: '60px',
-                  height: '60px',
-                  borderRadius: '50%',
-                  background: '#0a0a0a',
-                  border: '1px solid var(--border-neon)',
-                  color: 'var(--accent-neon)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 0 15px rgba(57, 255, 20, 0.1)',
-                  flexShrink: 0,
-                  transition: 'all 0.3s',
-                }}
-                className="sw-step-dot"
-              >
+              <div className="sw-step-dot">
                 {step.icon}
               </div>
 
               {/* Step Content */}
-              <div
-                className="glassmorphism subtle-border"
-                style={{
-                  padding: '28px',
-                  borderRadius: '20px',
-                  flexGrow: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px',
-                }}
-              >
+              <div className="glassmorphism subtle-border sw-step-content">
                 <div
                   style={{
                     display: 'flex',
@@ -225,14 +194,6 @@ export default function Software() {
         </div>
       </div>
 
-      <style jsx global>{`
-        .sw-step-container:hover .sw-step-dot {
-          background: var(--accent-neon);
-          color: #000;
-          box-shadow: 0 0 20px var(--accent-neon);
-          transform: scale(1.05);
-        }
-      `}</style>
     </section>
   );
 }

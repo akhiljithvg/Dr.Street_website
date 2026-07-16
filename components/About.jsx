@@ -281,19 +281,6 @@ export default function About() {
         </div>
       </div>
 
-      <style jsx>{`
-        @media (max-width: 900px) {
-          .about-grid {
-            grid-template-columns: 1fr !important;
-            gap: 40px !important;
-          }
-        }
-        .feature-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-          border-color: rgba(57, 255, 20, 0.4);
-        }
-      `}</style>
     </section>
   );
 }

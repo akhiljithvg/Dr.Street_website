@@ -130,6 +130,7 @@ void loop() {
       <div 
         style={{
           display: 'flex',
+          flexWrap: 'wrap',
           gap: '12px',
           margin: '25px 0',
           borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
@@ -247,7 +248,13 @@ void loop() {
           </div>
 
           {/* Warning Boxes */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+          <div 
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+              gap: '20px' 
+            }}
+          >
             <div style={{ border: '1px solid rgba(255, 59, 48, 0.2)', background: 'rgba(255, 59, 48, 0.03)', borderRadius: '12px', padding: '20px', display: 'flex', gap: '15px' }}>
               <AlertTriangle style={{ color: '#ff3b30', flexShrink: 0 }} size={24} />
               <div>

@@ -8,12 +8,15 @@ export default function DocFooter({ prev, next }) {
         display: 'flex', 
         justifyContent: 'space-between', 
         alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '16px',
         marginTop: '60px',
         paddingTop: '24px',
-        borderTop: '1px solid var(--border-subtle)'
+        borderTop: '1px solid var(--border-subtle)',
+        minWidth: 0
       }}
     >
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: '1 1 200px', minWidth: 0 }}>
         {prev && (
           <Link href={prev.href} style={{ textDecoration: 'none' }}>
             <div 
@@ -40,7 +43,7 @@ export default function DocFooter({ prev, next }) {
         )}
       </div>
 
-      <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+      <div style={{ flex: '1 1 200px', display: 'flex', justifyContent: 'flex-end', minWidth: 0 }}>
         {next && (
           <Link href={next.href} style={{ textDecoration: 'none' }}>
             <div 
@@ -69,13 +72,6 @@ export default function DocFooter({ prev, next }) {
         )}
       </div>
       
-      <style jsx global>{`
-        .doc-nav-card:hover {
-          background: rgba(255,255,255,0.05) !important;
-          border-color: rgba(255,255,255,0.2) !important;
-          transform: translateY(-2px);
-        }
-      `}</style>
     </div>
   );
 }

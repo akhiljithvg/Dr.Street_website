@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
+import Link from 'next/link';
 import Logo from './Logo';
 
 export default function Navbar() {
@@ -69,13 +70,13 @@ export default function Navbar() {
         }}
       >
         {/* Logo for mobile only (hidden on desktop) */}
-        <a
-          href="#hero"
+        <Link
+          href="/"
           className="mobile-logo-nav"
           style={{ textDecoration: 'none', display: 'none' }}
         >
           <Logo scale={0.5} />
-        </a>
+        </Link>
 
         {/* Desktop Links (Pushed to the right since Logo is in sidebar) */}
         <div
@@ -113,30 +114,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Global CSS overrides */}
-      <style jsx global>{`
-        .docs-navbar {
-          width: calc(100% - 260px);
-          left: 260px;
-        }
-
-        @media (max-width: 1024px) {
-          .docs-navbar {
-            width: 100% !important;
-            left: 0 !important;
-            padding: 0 20px !important;
-          }
-          .desktop-menu {
-            display: none !important;
-          }
-          .mobile-hamburger {
-            display: block !important;
-          }
-          .mobile-logo-nav {
-            display: block !important;
-          }
-        }
-      `}</style>
     </>
   );
 }

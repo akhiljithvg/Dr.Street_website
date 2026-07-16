@@ -12,35 +12,21 @@ export default function DocsLayout({ children }) {
         className="main-doc-content"
         style={{ 
           flex: 1, 
-          marginLeft: '260px', /* Width of sidebar */
           position: "relative", 
           zIndex: 10,
           minHeight: '100vh',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          minWidth: 0
         }}
       >
         <Navbar />
-        <div style={{ flex: 1, padding: '20px 60px', width: '100%' }}>
+        <div style={{ flex: 1, padding: '20px clamp(15px, 5vw, 60px)', width: '100%', minWidth: 0 }}>
           {children}
         </div>
         <Footer />
       </div>
 
-      <style jsx global>{`
-        @media (max-width: 1024px) {
-          .main-doc-content {
-            margin-left: 0 !important;
-          }
-          .docs-sidebar {
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-          }
-          .docs-sidebar.open {
-            transform: translateX(0);
-          }
-        }
-      `}</style>
     </main>
   );
 }

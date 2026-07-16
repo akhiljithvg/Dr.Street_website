@@ -19,7 +19,8 @@ function TerminalBlock({ code }) {
       overflow: 'hidden',
       marginTop: '10px',
       fontFamily: "'Courier New', Courier, monospace",
-      position: 'relative'
+      position: 'relative',
+      minWidth: 0
     }}>
       <div style={{
         background: '#0d0d0d',
@@ -73,7 +74,8 @@ function AccordionItem({ question, answer, code = '' }) {
         borderRadius: '12px',
         overflow: 'hidden',
         border: '1px solid rgba(255,255,255,0.03)',
-        transition: 'all 0.3s'
+        transition: 'all 0.3s',
+        minWidth: 0
       }}
     >
       <button
@@ -498,11 +500,6 @@ export default function Gallery() {
         </div>
       )}
 
-      <style jsx global>{`
-        .gallery-item:hover .gallery-overlay {
-          opacity: 1;
-        }
-      `}</style>
     </section>
   );
 }

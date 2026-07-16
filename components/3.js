@@ -223,6 +223,15 @@ export default function ThreeDemo() {
     };
     window.addEventListener('mousemove', onMouseMove);
 
+    const onTouchMove = (e) => {
+      if (e.touches && e.touches.length > 0) {
+        const touch = e.touches[0];
+        mouseX = (touch.clientX / window.innerWidth - 0.5) * 2;
+        mouseY = (touch.clientY / window.innerHeight - 0.5) * 2;
+      }
+    };
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+
     function render(time) {
       time *= 0.001;
 
@@ -273,6 +282,7 @@ export default function ThreeDemo() {
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('touchmove', onTouchMove);
       cancelAnimationFrame(animId);
       renderer.dispose();
     };

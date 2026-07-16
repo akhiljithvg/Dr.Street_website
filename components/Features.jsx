@@ -20,7 +20,8 @@ function TerminalBlock({ code }) {
         overflow: 'hidden',
         marginTop: '12px',
         fontFamily: "'Courier New', Courier, monospace",
-        position: 'relative'
+        position: 'relative',
+        minWidth: 0
       }}
     >
       <div 
@@ -133,7 +134,8 @@ export default function Features() {
               display: 'flex',
               flexDirection: 'column',
               gap: '12px',
-              transition: 'border-color 0.3s'
+              transition: 'border-color 0.3s',
+              minWidth: 0
             }}
           >
             {/* Header row */}
@@ -167,11 +169,6 @@ export default function Features() {
         ))}
       </div>
 
-      <style jsx global>{`
-        .setup-card:hover {
-          border-color: var(--accent-neon) !important;
-        }
-      `}</style>
     </section>
   );
 }

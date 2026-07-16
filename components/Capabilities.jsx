@@ -46,6 +46,7 @@ export default function Capabilities() {
       </div>
 
       <div
+        className="capabilities-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
@@ -53,6 +54,7 @@ export default function Capabilities() {
           maxWidth: '1050px',
           margin: '30px auto 0 auto',
           alignItems: 'start',
+          minWidth: 0,
         }}
       >
         {/* Left Side: Algorithmic Explanations */}

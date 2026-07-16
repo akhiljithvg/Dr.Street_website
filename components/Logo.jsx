@@ -8,7 +8,7 @@ export default function Logo({ scale = 1 }) {
       alt="Dr.Street Logo"
       width={250 * scale} 
       height={70 * scale} 
-      style={{ objectFit: 'contain', flexShrink: 0 }}
+      style={{ objectFit: 'contain', flexShrink: 0, maxWidth: '100%', height: 'auto' }}
       priority
     />
   );
