@@ -29,26 +29,7 @@ export default function ThreeDemo() {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#000000');
 
-    {
-      const planeSize = 40;
-      const loader = new THREE.TextureLoader();
-      const texture = loader.load('/images/checker.png');
-      texture.wrapS = THREE.RepeatWrapping;
-      texture.wrapT = THREE.RepeatWrapping;
-      texture.magFilter = THREE.NearestFilter;
-      const repeats = planeSize / 2;
-      texture.repeat.set(repeats, repeats);
 
-      const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
-      const planeMat = new THREE.MeshPhongMaterial({
-        map: texture,
-        side: THREE.DoubleSide,
-        color: 0xb8b8b8
-      });
-      const mesh = new THREE.Mesh(planeGeo, planeMat);
-      mesh.rotation.x = Math.PI * -.5;
-      scene.add(mesh);
-    }
 
     {
       const skyColor = 0xd7e0e6;
@@ -298,7 +279,7 @@ export default function ThreeDemo() {
   }, []);
 
   return (
-    <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
+    <div style={{ width: '100%', height: '100vh', position: 'relative', backgroundColor: '#000000' }}>
       <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
     </div>
   );
