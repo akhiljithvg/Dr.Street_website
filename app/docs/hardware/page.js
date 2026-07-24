@@ -8,7 +8,7 @@ export default function HardwarePage() {
       <Hardware />
       
       <DocFooter 
-        prev={{ title: "Introduction", href: "/docs/intro" }} 
+        prev={{ title: "Kit Components Checklist", href: "/docs/checklist" }} 
         next={{ title: "Software & ROS 2", href: "/docs/software" }} 
       />
     </div>

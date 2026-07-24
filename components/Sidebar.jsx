@@ -23,6 +23,7 @@ export default function Sidebar() {
       title: 'Getting Started',
       links: [
         { name: 'Introduction', href: '/docs/intro' },
+        { name: 'Kit Components Checklist', href: '/docs/checklist' },
       ],
     },
     {

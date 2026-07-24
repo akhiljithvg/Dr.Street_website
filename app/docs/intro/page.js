@@ -13,7 +13,7 @@ export default function IntroPage() {
       
       <DocFooter 
         prev={null} 
-        next={{ title: "Hardware Assembly & Wiring", href: "/docs/hardware" }} 
+        next={{ title: "Kit Components Checklist", href: "/docs/checklist" }} 
       />
     </div>
   );
